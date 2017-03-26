@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -116,6 +117,18 @@ public class orderdeatial_frag extends Fragment {
             }
         });
 //-------------------------------------------------------------------------------
+        v.findViewById(R.id.btn_submit_rating).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float rating = (qality_rate.getRating() * 0.25f);
+                rating += (time_rate.getRating() * 0.25);
+                rating += (price_rate.getRating() * 0.25);
+                rating += (all_experince.getRating() * 0.25);
+                DatabaseAdapter.getInstance().addChiefRating(myorder.getChiefID(), rating);
+
+            }
+        });
+//-------------------------------------------------------------------------------
         TextView txtItems = (TextView) v.findViewById(R.id.itemname_text);
         TextView txtPrice = (TextView) v.findViewById(R.id.price_text);
         TextView txtTotal = (TextView) v.findViewById(R.id.total_text);
@@ -123,7 +136,7 @@ public class orderdeatial_frag extends Fragment {
         txtItems.setText(results.get(0).getName());
         txtPrice.setText(String.format("EGP%s", String.valueOf(results.get(0).getPrice())));
         txtQuantity.setText("");
-        float Total = 0.0f;
+        float Total = results.get(0).getPrice();
         int count = 1;
         for (int i = 1; i < results.size(); i++){
             if (results.get(i).getName().compareTo(results.get(i-1).getName()) != 0) {

@@ -222,14 +222,11 @@ public class SignupFragment extends Fragment {
                 while (addresses.get(0).getAddressLine(i) != null) {
                     address_name += addresses.get(0).getAddressLine(i++) + ", ";
                     address.setText(address_name);
-                    //progressDialog.dismiss();
+                    locationManager.removeUpdates(mLocationListener);
+                    progressDialog.dismiss();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-            if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
-                locationManager.removeUpdates(mLocationListener);
-                progressDialog.dismiss();
             }
         }
 

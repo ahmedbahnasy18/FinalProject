@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -111,7 +112,7 @@ public class Basket_fragment extends Fragment {
         if(mChief.isPickUp())
             items.add("PickUp");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
         final Spinner dropdown1 = (Spinner)v.findViewById(R.id.spinner2);
@@ -139,11 +140,12 @@ public class Basket_fragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<String> item = new ArrayList<>();
+                item.add("Select Address");
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     item.add(postSnapshot.getValue(String.class));
                 }
                 item.add("Add New..");
-                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, item);
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, item);
                 dropdown1.setAdapter(adapter1);
             }
 
@@ -155,33 +157,40 @@ public class Basket_fragment extends Fragment {
         v.findViewById(R.id.checkout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.app.AlertDialog.Builder alertdialog=new android.app.AlertDialog.Builder(getActivity());
+                if (dropdown1.getSelectedItem().toString().equals("Select Address")){
+                    new AlertDialog.Builder(getActivity())
+                            .setMessage("You need to select an address before placing an order.")
+                            .setPositiveButton("Ok", null)
+                            .show();
+                } else {
+                    android.app.AlertDialog.Builder alertdialog = new android.app.AlertDialog.Builder(getActivity());
 
-                alertdialog.setMessage("order confirm");
-                alertdialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        DatabaseAdapter.getInstance().submitOrder(
-                                new Order(
-                                        String.format("%9s", String.valueOf((int) Math.round(Math.random() * 999999999))).replace(' ', '0'),
-                                        mItems,
-                                        items.get(dropdown.getSelectedItemPosition()).equals("Delivery")?Order.DELIVERY_METHOD_DELIVERY:Order.DELIVERY_METHOD_PICKUP,
-                                        Order.STATUS_PENDING,
-                                        new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault()).format(Calendar.getInstance().getTime()),
-                                        dropdown1.getSelectedItem().toString(),
-                                        false,
-                                        mChief.getId(),
-                                        FirebaseAuth.getInstance().getCurrentUser().getUid()
-                                )
-                        );
-                        ((HomeActivity) getActivity()).currentBasket.clear();
-                        getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    }
+                    alertdialog.setMessage("order confirm");
+                    alertdialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            DatabaseAdapter.getInstance().submitOrder(
+                                    new Order(
+                                            String.format("%9s", String.valueOf((int) Math.round(Math.random() * 999999999))).replace(' ', '0'),
+                                            mItems,
+                                            items.get(dropdown.getSelectedItemPosition()).equals("Delivery") ? Order.DELIVERY_METHOD_DELIVERY : Order.DELIVERY_METHOD_PICKUP,
+                                            Order.STATUS_PENDING,
+                                            new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault()).format(Calendar.getInstance().getTime()),
+                                            dropdown1.getSelectedItem().toString(),
+                                            false,
+                                            mChief.getId(),
+                                            FirebaseAuth.getInstance().getCurrentUser().getUid()
+                                    )
+                            );
+                            ((HomeActivity) getActivity()).currentBasket.clear();
+                            getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        }
 
-                });
-                alertdialog.setNegativeButton("cancel",null);
-                alertdialog.create();
-                alertdialog.show();
+                    });
+                    alertdialog.setNegativeButton("cancel", null);
+                    alertdialog.create();
+                    alertdialog.show();
+                }
             }
         });
 

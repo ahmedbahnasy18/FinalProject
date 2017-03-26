@@ -87,8 +87,8 @@ public class Chief implements Parcelable {
         return rating;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setRating(float rating) {
+        this.rating = Math.round(rating);
     }
 
     public String getImage() {

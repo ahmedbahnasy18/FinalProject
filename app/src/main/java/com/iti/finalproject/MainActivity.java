@@ -3,6 +3,7 @@ package com.iti.finalproject;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements SenderInteface{
 
@@ -16,6 +17,16 @@ public class MainActivity extends AppCompatActivity implements SenderInteface{
         if (savedInstanceState == null)
             getSupportFragmentManager().beginTransaction().add(R.id.activity_main,new LoginFragment()).commit();
 
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                } else {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -43,6 +54,13 @@ public class MainActivity extends AppCompatActivity implements SenderInteface{
         super.onDestroy();
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

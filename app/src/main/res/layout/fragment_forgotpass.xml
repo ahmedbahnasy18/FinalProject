@@ -1,47 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.loginapp.ForgotpassFragment">
+    android:orientation="vertical"
+    tools:context=".ForgotpassFragment">
 
-    <LinearLayout
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/email_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp">
+        android:layout_height="wrap_content">
 
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/email_text_input_layout"
+        <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:layout_width="209dp"
             android:layout_height="wrap_content"
-            android:text="Reset"
-            android:background="#3F51B5"
-            android:textColor="#E3F2FD"
-            android:id="@+id/reset_pass"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginBottom="20dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
 
+    </android.support.design.widget.TextInputLayout>
 
-
-    </LinearLayout>
-</FrameLayout>
+    <Button
+        android:id="@+id/reset_pass"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#3F51B5"
+        android:text="Reset"
+        android:textColor="#E3F2FD" />
+</LinearLayout>

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -104,17 +105,53 @@ public class UserProfileFragment extends Fragment {
             public void onClick(View v) {
                 ArrayList<String> addresses = new ArrayList<>();
 
-                for (EditText address : mAddressEditTexts) {
-                    addresses.add(address.getText().toString());
+                txtName.setError(null);
+                txtPhone.setError(null);
+
+                boolean cancel = false;
+                View focusView = null;
+
+                if (TextUtils.isEmpty(txtPhone.getText().toString())){
+                    cancel = true;
+                    txtPhone.setError("This field is required!");
+                    focusView = txtPhone;
                 }
 
-                mUser.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(txtName.getText().toString()).build());
+                if (TextUtils.isEmpty(txtName.getText().toString())){
+                    cancel = true;
+                    txtName.setError("This field is required!");
+                    focusView = txtName;
+                }
 
-                DatabaseAdapter.getInstance().addUserInfo(mUser.getUid(), txtPhone.getText().toString(), addresses);
+                if (mAddressEditTexts.size() == 0){
+                    cancel = true;
+                    focusView = txtPhone;
+                    new AlertDialog.Builder(getActivity())
+                            .setMessage("You need to have at least one address," +
+                                    " Please add a new address to complete your profile.")
+                            .setPositiveButton("Ok", null)
+                            .show();
+                }
 
-                Toast.makeText(getActivity(), "Saved...", Toast.LENGTH_SHORT).show();
+                if (cancel){
 
-                getActivity().getSupportFragmentManager().popBackStackImmediate();
+                    focusView.requestFocus();
+
+                } else {
+
+                    for (EditText address : mAddressEditTexts) {
+                        if (!TextUtils.isEmpty(address.getText().toString()))
+                            addresses.add(address.getText().toString());
+                    }
+
+                    mUser.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(txtName.getText().toString()).build());
+
+                    DatabaseAdapter.getInstance().addUserInfo(mUser.getUid(), txtPhone.getText().toString(), addresses);
+
+                    Toast.makeText(getActivity(), "Saved...", Toast.LENGTH_SHORT).show();
+
+                    getActivity().getSupportFragmentManager().popBackStackImmediate();
+                }
             }
         });
 
@@ -160,7 +197,7 @@ public class UserProfileFragment extends Fragment {
             final EditText txtAddress = new EditText(getActivity());
             txtAddress.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.85f));
             txtAddress.setMaxLines(1);
-            txtAddress.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+            txtAddress.setInputType(InputType.TYPE_NULL);
             txtAddress.setText(address);
 
             Button button = new Button(getActivity());

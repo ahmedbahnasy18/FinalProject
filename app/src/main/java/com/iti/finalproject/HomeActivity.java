@@ -213,10 +213,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             "\t\tMostafa Saleh")
                     .setPositiveButton("Close", null)
                     .show();
-        } else if (id == R.id.nav_share) {
-            Toast.makeText(this, "This feature hasn't been implemented yet", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_send) {
-            Toast.makeText(this, "This feature hasn't been implemented yet", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
