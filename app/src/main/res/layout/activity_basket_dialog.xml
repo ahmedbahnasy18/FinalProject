@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_basket_dialog"
@@ -13,105 +14,134 @@
     tools:context=".BasketDialogActivity">
 
     <TextView
-        android:text="description"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:id="@+id/description"
+        android:textSize="17sp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:text="Price"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="17sp"
-            android:layout_marginLeft="20dp"/>
-        <TextView
-            android:text="SubTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:layout_marginLeft="120dp"
-            android:id="@+id/t_id"/>
-    </LinearLayout>
+        android:layout_centerHorizontal="true"/>
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:text="34"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="17sp"
-            android:layout_marginLeft="22dp"
-            android:id="@+id/itemprice" />
-        <TextView
-            android:text="68"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:layout_marginLeft="150dp"
-            android:id="@+id/itemsuptotal"
-            />
-    </LinearLayout>
+    <View
+        android:id="@+id/desc_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/description"
+        android:background="@android:color/darker_gray"/>
+
     <TextView
-        android:text="Quantity"
+        android:text="Price"
+        android:id="@+id/lbl_price"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/desc_separator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textSize="17sp"/>
+    <TextView
+        android:text="SubTotal"
+        android:id="@+id/lbl_subtotal"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/desc_separator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:text="34"
+        android:layout_below="@+id/lbl_price"
+        android:layout_alignParentStart="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="10dp"/>
-    <LinearLayout
-        android:layout_height="wrap_content"
+        android:id="@+id/itemprice" />
+
+    <TextView
+        android:text="68"
+        android:layout_below="@+id/lbl_subtotal"
+        android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:id="@+id/itemsuptotal" />
+
+    <View
+        android:id="@+id/price_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp">
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/itemsuptotal"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:text="Quantity"
+        android:id="@+id/lbl_quantity"
+        android:textStyle="bold"
+        android:layout_below="@+id/price_separator"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"/>
+
+    <FrameLayout
+        android:id="@+id/quantity_layout"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/lbl_quantity">
+
         <ImageView
             android:layout_width="50dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/btn_decrement"
             android:id="@+id/decrement_image" />
+
         <TextView
             android:text="0"
             android:textSize="17sp"
-            android:textAlignment="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:id="@+id/quantity_tv"
-            android:layout_width="120dp"
-            android:layout_height="50dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <ImageView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
             app:srcCompat="@drawable/btn_increment"
             android:id="@+id/increment_image" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="25dp">
 
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/quantity_layout">
         <Button
             android:text="Cancel"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:id="@+id/cancel_btn"
-            android:layout_marginLeft="30dp"/>
+            android:id="@+id/cancel_btn"/>
 
         <Button
             android:text="Basket"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:id="@+id/basket_btn"
-            android:layout_marginLeft="70dp"/>
+            android:id="@+id/basket_btn"/>
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>
