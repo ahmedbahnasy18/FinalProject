@@ -107,6 +107,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         signInButton = (SignInButton) v.findViewById(R.id.google_btn);
         signInButton.setOnClickListener(this);
 
+        ((TextView) signInButton.getChildAt(0)).setText("Google");
+        ((TextView) signInButton.getChildAt(0)).setTextSize(15);
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
