@@ -1,32 +1,66 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".LoginFragment"
+    android:id="@+id/fragment_log">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.7"
+        android:src="@drawable/pass_reset_bg" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#90000000"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ForgotpassFragment">
 
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/email_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/email"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email_text_input_layout"
+            android:textColorHint="@android:color/white"
+            android:layout_margin="50dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:theme="@style/LoginEditTextTheme"
+                android:textColor="@android:color/white"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
+            app:cardBackgroundColor="#ffd9d9d9"
+            android:layout_gravity="center_horizontal"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="5dp">
 
-    </android.support.design.widget.TextInputLayout>
+            <Button
+                android:id="@+id/reset_pass"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorAccent"
+                android:text="Reset"
+                android:textColor="@android:color/white" />
 
-    <Button
-        android:id="@+id/reset_pass"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="#3F51B5"
-        android:text="Reset"
-        android:textColor="#E3F2FD" />
-</LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</FrameLayout>
