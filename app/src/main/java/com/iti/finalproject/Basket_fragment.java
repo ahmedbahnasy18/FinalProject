@@ -208,23 +208,23 @@ public class Basket_fragment extends Fragment {
         TextView txtTotal = (TextView) v.findViewById(R.id.total_text);
         TextView txtQuantity = (TextView) v.findViewById(R.id.quantity_text);
         txtItems.setText(mItems.get(0).getName());
-        txtPrice.setText(String.format("EGP%s", String.valueOf(mItems.get(0).getPrice())));
+        txtPrice.setText(String.format(Locale.getDefault(), "%s LE", String.valueOf(mItems.get(0).getPrice())));
         txtQuantity.setText("");
         float Total = mItems.get(0).getPrice();;
         int count = 1;
         for (int i = 1; i < mItems.size(); i++){
             if (mItems.get(i).getName().compareTo(mItems.get(i-1).getName()) != 0) {
-                txtItems.setText(txtItems.getText().toString() + "\n" + mItems.get(i).getName());
-                txtPrice.setText(txtPrice.getText().toString() + "\nEGP" + String.valueOf(mItems.get(i).getPrice()));
-                txtQuantity.setText(txtQuantity.getText().toString() + String.valueOf(count) + "x" + "\n");
+                txtItems.setText(String.format(Locale.getDefault(), "%s\n%s",txtItems.getText().toString(),mItems.get(i).getName()));
+                txtPrice.setText(String.format(Locale.getDefault(), "%s\n%.2f LE", txtPrice.getText().toString(), mItems.get(i).getPrice()));
+                txtQuantity.setText(String.format(Locale.getDefault(), "%s%dx\n", txtQuantity.getText().toString(), count));
                 count = 1;
             } else {
                 count++;
             }
             Total += mItems.get(i).getPrice();
         }
-        txtQuantity.setText(txtQuantity.getText().toString() + String.valueOf(count) + "x");
-        txtTotal.setText(String.format("Total: %.2f", Total));
+        txtQuantity.setText(String.format(Locale.getDefault(), "%s%dx", txtQuantity.getText().toString(), count));
+        txtTotal.setText(String.format(Locale.getDefault(),"%.2f LE", Total));
         return v;
     }
 }
