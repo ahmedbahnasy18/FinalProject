@@ -1,145 +1,171 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".LoginFragment"
-    android:id="@+id/fragment_log"
-    android:weightSum="1">
+    android:id="@+id/fragment_log">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:elevation="16dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:layout_marginBottom="16dp"
+        android:alpha="0.7"
         android:src="@drawable/login_image" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/email_text_input_layout"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/passward_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content">
-
-
-        <EditText
-            android:id="@+id/pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Passward"
-            android:inputType="textPassword" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center_horizontal"
-        app:cardBackgroundColor="#ffd9d9d9"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="2dp">
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:text="Login"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:background="#3e63b3"
-        android:textColor="#FFFFFF"
-        android:id="@+id/login"
-        android:textAllCaps="false"/>
-    </android.support.v7.widget.CardView>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1.2dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="5dp"
-        android:background="@android:color/darker_gray"/>
+        android:layout_height="match_parent"
+        android:background="#90000000"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal">
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/google_btn"
-            android:layout_width="0dp"
-            android:layout_weight="0.52"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:colorScheme="dark"/>
+            android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_weight="0.48"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#ffd9d9d9"
-            android:layout_marginTop="4dp"
-            app:cardCornerRadius="2dp"
-            app:cardElevation="2dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:src="@mipmap/ic_launcher_round"/>
 
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/login_button"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/email_text_input_layout"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:textColorHint="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:theme="@style/LoginEditTextTheme"
+                    android:textColor="@android:color/white"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/passward_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@android:color/white"
+                android:layout_height="wrap_content">
+
+
+                <EditText
+                    android:id="@+id/pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:theme="@style/LoginEditTextTheme"
+                    android:textColor="@android:color/white"
+                    android:hint="Passward"
+                    android:inputType="textPassword" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal"
+                app:cardBackgroundColor="#ffd9d9d9"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="Login"
                 android:textSize="15sp"
-                android:paddingBottom="11dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="10dp"
-                app:com_facebook_login_text="Facebook"
-                android:textColor="@android:color/white" />
+                android:textStyle="bold"
+                android:background="#3e63b3"
+                android:textColor="#FFFFFF"
+                android:id="@+id/login"
+                android:textAllCaps="false"/>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/darker_gray"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/forgot_pass"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="15dp"
-        android:text="Forgot Password ?"
-        android:gravity="center_horizontal"
-        android:textColor="@android:color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sign_up"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="Sign Up?"
-        android:gravity="center_horizontal"
-        android:textColor="@android:color/black"/>
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/google_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.52"
+                    android:layout_height="wrap_content"
+                    app:colorScheme="dark"/>
 
-</LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.48"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#ffd9d9d9"
+                    android:layout_marginTop="4dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp">
+
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="15sp"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingTop="10dp"
+                        app:com_facebook_login_text="Facebook"
+                        android:textColor="@android:color/white" />
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/forgot_pass"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"
+                android:text="Forgot Password ?"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sign_up"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Sign Up?"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/white"/>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
