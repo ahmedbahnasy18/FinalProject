@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_basket_dialog"
     android:layout_width="match_parent"
@@ -100,9 +98,10 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_gravity="start"
+            android:scaleType="fitCenter"
             android:layout_marginStart="10dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/btn_decrement"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_remove"
             android:id="@+id/decrement_image" />
 
         <TextView
@@ -115,32 +114,45 @@
 
         <ImageView
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_height="match_parent"
             android:layout_gravity="end"
             android:layout_marginEnd="10dp"
-            app:srcCompat="@drawable/btn_increment"
+            android:src="@drawable/ic_add"
             android:id="@+id/increment_image" />
 
     </FrameLayout>
+
+    <View
+        android:id="@+id/quantity_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/quantity_layout"
+        android:background="@android:color/darker_gray"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/quantity_layout">
+        android:layout_below="@+id/quantity_separator">
+
         <Button
             android:text="Cancel"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:layout_height="wrap_content"
+            style="@style/Button"
+            android:layout_height="55dp"
             android:id="@+id/cancel_btn"/>
 
         <Button
-            android:text="Basket"
+            android:text="Add"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
+            style="@style/Button"
             android:id="@+id/basket_btn"/>
+
     </LinearLayout>
 
 

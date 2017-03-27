@@ -1,130 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/activity_basket"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_basket"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:colorBackground"
+    android:padding="25dp">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:colorBackground"
-        android:padding="25dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Summary"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:text="3x"
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="match_parent"
+                android:lineSpacingMultiplier="1.44"
+                android:gravity="bottom"
+                android:textSize="15sp"
+                android:id="@+id/quantity_text" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.55"
                 android:layout_height="wrap_content"
-                android:text="Order Summary"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-            <View
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@android:color/darker_gray"/>
+                android:textSize="18sp"
+                android:lineSpacingMultiplier="1.2"
+                android:text="Chicken"
+                android:id="@+id/itemname_text" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.35"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:textSize="18sp"
+                android:lineSpacingMultiplier="1.2"
+                android:text="30.00 LE"
+                android:gravity="end"
+                android:id="@+id/price_text" />
 
-                <TextView
-                    android:text="3x"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.1"
-                    android:layout_height="match_parent"
-                    android:lineSpacingMultiplier="1.44"
-                    android:gravity="bottom"
-                    android:textSize="15sp"
-                    android:id="@+id/quantity_text" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.55"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:lineSpacingMultiplier="1.2"
-                    android:text="Chicken"
-                    android:id="@+id/itemname_text" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.35"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:lineSpacingMultiplier="1.2"
-                    android:text="30.00 LE"
-                    android:gravity="end"
-                    android:id="@+id/price_text" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:background="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="0.1"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.55"
-                    android:textSize="18sp"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Total"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.35"
-                    android:textSize="18sp"
-                    android:layout_height="wrap_content"
-                    android:text="90.00 LE"
-                    android:gravity="end"
-                    android:textStyle="bold"
-                    android:id="@+id/total_text" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:background="@android:color/darker_gray"/>
-
-            <Spinner
-                android:id="@+id/spinner1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown" />
-
-
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown" />
-
-            <Button
-                android:text="Check Out"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:theme="@style/Button"
-                android:layout_gravity="bottom"
-                android:id="@+id/checkout" />
         </LinearLayout>
-    </ScrollView>
+
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.55"
+                android:textSize="18sp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Total"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.35"
+                android:textSize="18sp"
+                android:layout_height="wrap_content"
+                android:text="90.00 LE"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:id="@+id/total_text" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"/>
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+
+        <Button
+            android:text="Check Out"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:theme="@style/Button"
+            android:layout_gravity="bottom"
+            android:id="@+id/checkout" />
+    </LinearLayout>
+</ScrollView>

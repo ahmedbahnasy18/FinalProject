@@ -30,4 +30,8 @@
         <item name="android:background">@color/colorAccent</item>
     </style>
 
+    <style name="RatingBarMedium" parent="Base.Widget.AppCompat.RatingBar.Indicator">
+        <item name="android:isIndicator">false</item>
+    </style>
+
 </resources>

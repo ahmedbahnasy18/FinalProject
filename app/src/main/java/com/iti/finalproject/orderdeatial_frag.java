@@ -1,9 +1,7 @@
 package com.iti.finalproject;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,11 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -129,30 +127,30 @@ public class orderdeatial_frag extends Fragment {
             }
         });
 //-------------------------------------------------------------------------------
+        TextView txtOrderNumber = (TextView) v.findViewById(R.id.txt_order_number);
         TextView txtItems = (TextView) v.findViewById(R.id.itemname_text);
         TextView txtPrice = (TextView) v.findViewById(R.id.price_text);
         TextView txtTotal = (TextView) v.findViewById(R.id.total_text);
         TextView txtQuantity = (TextView) v.findViewById(R.id.quantity_text);
+        txtOrderNumber.setText(String.format(Locale.getDefault(), "#%s", myorder.getId()));
         txtItems.setText(results.get(0).getName());
-        txtPrice.setText(String.format("EGP%s", String.valueOf(results.get(0).getPrice())));
+        txtPrice.setText(String.format(Locale.getDefault(), "%s LE", String.valueOf(results.get(0).getPrice())));
         txtQuantity.setText("");
         float Total = results.get(0).getPrice();
         int count = 1;
         for (int i = 1; i < results.size(); i++){
             if (results.get(i).getName().compareTo(results.get(i-1).getName()) != 0) {
-                txtItems.setText(txtItems.getText().toString() + "\n" + results.get(i).getName());
-                txtPrice.setText(txtPrice.getText().toString() + "\nEGP" + String.valueOf(results.get(i).getPrice()));
-                txtQuantity.setText(txtQuantity.getText().toString() + String.valueOf(count) + "x" + "\n");
+                txtItems.setText(String.format(Locale.getDefault(), "%s\n%s",txtItems.getText().toString(),results.get(i).getName()));
+                txtPrice.setText(String.format(Locale.getDefault(), "%s\n%.2f LE", txtPrice.getText().toString(), results.get(i).getPrice()));
+                txtQuantity.setText(String.format(Locale.getDefault(), "%s%dx\n", txtQuantity.getText().toString(), count));
                 count = 1;
             } else {
                 count++;
             }
             Total += results.get(i).getPrice();
         }
-        txtQuantity.setText(txtQuantity.getText().toString() + String.valueOf(count) + "x");
-        txtTotal.setText(String.format("Total: %.2f", Total));
-
-
+        txtQuantity.setText(String.format(Locale.getDefault(), "%s%dx", txtQuantity.getText().toString(), count));
+        txtTotal.setText(String.format(Locale.getDefault(),"%.2f LE", Total));
         return v;
     }
 
