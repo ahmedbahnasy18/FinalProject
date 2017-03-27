@@ -175,7 +175,7 @@ public class Basket_fragment extends Fragment {
                                             mItems,
                                             items.get(dropdown.getSelectedItemPosition()).equals("Delivery") ? Order.DELIVERY_METHOD_DELIVERY : Order.DELIVERY_METHOD_PICKUP,
                                             Order.STATUS_PENDING,
-                                            new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault()).format(Calendar.getInstance().getTime()),
+                                            new SimpleDateFormat("EEEE, MMM dd, yyyy 'At' hh':'mm a", Locale.getDefault()).format(Calendar.getInstance().getTime()),
                                             dropdown1.getSelectedItem().toString(),
                                             false,
                                             mChief.getId(),
