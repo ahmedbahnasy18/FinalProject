@@ -113,7 +113,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 //Toast.makeText(HomeActivity.this, "Something Went Wrong, Please Try Agian Later!", Toast.LENGTH_LONG).show();
             }
         });
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
     @Override
