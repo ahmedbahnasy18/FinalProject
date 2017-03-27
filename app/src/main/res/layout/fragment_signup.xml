@@ -85,7 +85,7 @@
                     android:textColor="@android:color/white"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:hint="Passward"
+                    android:hint="Password"
                     android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
@@ -126,7 +126,6 @@
                         app:theme="@style/LoginEditTextTheme"
                         android:textColor="@android:color/white"
                         android:hint="Address"
-                        android:maxEms="16"
                         android:maxLines="1"
                         android:editable="false"
                         android:inputType="text"/>
@@ -158,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="#ffd9d9d9"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal"
                 app:cardCornerRadius="3dp"
                 app:cardElevation="5dp">
