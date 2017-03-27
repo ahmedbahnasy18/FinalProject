@@ -145,7 +145,6 @@ public class ChiefItemsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_chief_items, container, false);
         floatingActionButton = (FloatingActionButton) v.findViewById(R.id.fab);
         basketNo = (TextView) v.findViewById(R.id.basket_no);
-        //cheif = getIntent().getParcelableExtra("CHEIF_INTENT");
         //setTitle(cheif.getName());
         basketNo.setText(String.valueOf(((HomeActivity) getActivity()).currentBasket.size()));
         if(((HomeActivity) getActivity()).currentBasket.size() > 0){
@@ -179,7 +178,6 @@ public class ChiefItemsFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(iAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         return v;
     }

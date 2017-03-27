@@ -98,7 +98,6 @@ public class ChiefInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        getActivity().setTitle(mChief.getName()+" info");
         View v = inflater.inflate(R.layout.fragment_chief_info, container, false);
         cheifImage = (ImageView) v.findViewById(R.id.cheifimage);
         cheifName = (TextView) v.findViewById(R.id.cheifname);
@@ -150,6 +149,7 @@ public class ChiefInfoFragment extends Fragment {
             deliveryAvail.setText("Available");
         }else{deliveryAvail.setText("Not Available");}
         deliversIn.setText(mChief.getDeliverIn());
+        getActivity().setTitle(mChief.getName() + " Info");
         return v;
     }
 

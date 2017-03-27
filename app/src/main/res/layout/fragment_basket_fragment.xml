@@ -91,9 +91,14 @@
                 android:spinnerMode="dropdown" />
 
             <Button
-                android:text="check out"
+                android:text="Check Out"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAllCaps="false"
                 android:layout_gravity="bottom"
                 android:id="@+id/checkout" />
         </LinearLayout>
