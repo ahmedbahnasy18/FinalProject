@@ -1,27 +1,18 @@
 package com.iti.finalproject;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,8 +118,7 @@ public class ChiefItemsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ITEM_REQCODE) {
             if(resultCode == RESULT_OK){
-                basketNo.setVisibility(View.VISIBLE);
-                floatingActionButton.setVisibility(View.VISIBLE);
+                getView().findViewById(R.id.basket_button_layout).setVisibility(View.VISIBLE);
                 basketNo.setText(String.valueOf(Integer.parseInt(basketNo.getText().toString()) + data.getIntExtra("QUANTITY",0)));
                 for(int i = 0; i < data.getIntExtra("QUANTITY",0); i++){
                     ((HomeActivity) getActivity()).currentBasket.add((Item) data.getParcelableExtra("RETURN_ITEM"));
@@ -148,8 +138,7 @@ public class ChiefItemsFragment extends Fragment {
         //setTitle(cheif.getName());
         basketNo.setText(String.valueOf(((HomeActivity) getActivity()).currentBasket.size()));
         if(((HomeActivity) getActivity()).currentBasket.size() > 0){
-            basketNo.setVisibility(View.VISIBLE);
-            floatingActionButton.setVisibility(View.VISIBLE);
+            v.findViewById(R.id.basket_button_layout).setVisibility(View.VISIBLE);
         }
         ((HomeActivity) getActivity()).isItemsFragmentVisible = true;
         floatingActionButton.setOnClickListener(new View.OnClickListener() {

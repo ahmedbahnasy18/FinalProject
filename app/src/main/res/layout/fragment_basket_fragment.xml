@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_basket"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -104,20 +103,27 @@
             android:layout_height="2dp"
             android:background="@android:color/darker_gray"/>
 
-        <Spinner
-            android:id="@+id/spinner1"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
+            android:layout_margin="2dp">
+            <Spinner
+                android:id="@+id/spinner1"
+                android:popupBackground="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.CardView>
 
-
-        <Spinner
-            android:id="@+id/spinner2"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
+            android:layout_margin="2dp">
+            <Spinner
+                android:id="@+id/spinner2"
+                android:popupBackground="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.CardView>
 
         <Button
             android:text="Check Out"

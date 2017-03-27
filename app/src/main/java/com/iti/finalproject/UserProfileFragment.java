@@ -3,15 +3,19 @@ package com.iti.finalproject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -62,6 +66,63 @@ public class UserProfileFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
+        inflater.inflate(R.menu.save, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_save){
+            ArrayList<String> addresses = new ArrayList<>();
+
+            txtName.setError(null);
+            txtPhone.setError(null);
+
+            boolean cancel = false;
+            View focusView = null;
+
+            if (TextUtils.isEmpty(txtPhone.getText().toString())){
+                cancel = true;
+                txtPhone.setError("This field is required!");
+                focusView = txtPhone;
+            }
+
+            if (TextUtils.isEmpty(txtName.getText().toString())){
+                cancel = true;
+                txtName.setError("This field is required!");
+                focusView = txtName;
+            }
+
+            if (mAddressEditTexts.size() == 0){
+                cancel = true;
+                focusView = txtPhone;
+                new AlertDialog.Builder(getActivity())
+                        .setMessage("You need to have at least one address," +
+                                " Please add a new address to complete your profile.")
+                        .setPositiveButton("Ok", null)
+                        .show();
+            }
+
+            if (cancel){
+
+                focusView.requestFocus();
+
+            } else {
+
+                for (EditText address : mAddressEditTexts) {
+                    if (!TextUtils.isEmpty(address.getText().toString()))
+                        addresses.add(address.getText().toString());
+                }
+
+                mUser.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(txtName.getText().toString()).build());
+
+                DatabaseAdapter.getInstance().addUserInfo(mUser.getUid(), txtPhone.getText().toString(), addresses);
+
+                Toast.makeText(getActivity(), "Saved...", Toast.LENGTH_SHORT).show();
+
+                getActivity().getSupportFragmentManager().popBackStackImmediate();
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -96,61 +157,6 @@ public class UserProfileFragment extends Fragment {
                                 .setPositiveButton("Ok", null)
                                 .show();
                     }
-                }
-            }
-        });
-
-        v.findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<String> addresses = new ArrayList<>();
-
-                txtName.setError(null);
-                txtPhone.setError(null);
-
-                boolean cancel = false;
-                View focusView = null;
-
-                if (TextUtils.isEmpty(txtPhone.getText().toString())){
-                    cancel = true;
-                    txtPhone.setError("This field is required!");
-                    focusView = txtPhone;
-                }
-
-                if (TextUtils.isEmpty(txtName.getText().toString())){
-                    cancel = true;
-                    txtName.setError("This field is required!");
-                    focusView = txtName;
-                }
-
-                if (mAddressEditTexts.size() == 0){
-                    cancel = true;
-                    focusView = txtPhone;
-                    new AlertDialog.Builder(getActivity())
-                            .setMessage("You need to have at least one address," +
-                                    " Please add a new address to complete your profile.")
-                            .setPositiveButton("Ok", null)
-                            .show();
-                }
-
-                if (cancel){
-
-                    focusView.requestFocus();
-
-                } else {
-
-                    for (EditText address : mAddressEditTexts) {
-                        if (!TextUtils.isEmpty(address.getText().toString()))
-                            addresses.add(address.getText().toString());
-                    }
-
-                    mUser.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(txtName.getText().toString()).build());
-
-                    DatabaseAdapter.getInstance().addUserInfo(mUser.getUid(), txtPhone.getText().toString(), addresses);
-
-                    Toast.makeText(getActivity(), "Saved...", Toast.LENGTH_SHORT).show();
-
-                    getActivity().getSupportFragmentManager().popBackStackImmediate();
                 }
             }
         });
@@ -200,8 +206,9 @@ public class UserProfileFragment extends Fragment {
             txtAddress.setInputType(InputType.TYPE_NULL);
             txtAddress.setText(address);
 
-            Button button = new Button(getActivity());
+            Button button = new Button(new ContextThemeWrapper(getActivity(), R.style.Button));
             button.setText("-");
+            button.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorAccent), PorterDuff.Mode.SRC);
             button.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.15f));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
