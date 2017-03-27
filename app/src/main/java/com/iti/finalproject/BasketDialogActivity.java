@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.iti.finalproject.R;
+import java.util.Locale;
 
 public class BasketDialogActivity extends AppCompatActivity {
     TextView description;
@@ -38,8 +38,8 @@ public class BasketDialogActivity extends AppCompatActivity {
         final Item item = getIntent().getParcelableExtra("ITEM_INTENT");
         setTitle(item.getName());
         description.setText(item.getDescription());
-        itemPrice.setText(String.valueOf(item.getPrice()));
-        itemSubTotal.setText(String.valueOf(item.getPrice()));
+        itemPrice.setText(String.format(Locale.getDefault(), "%.2f LE", item.getPrice()));
+        itemSubTotal.setText(String.format(Locale.getDefault(), "%.2f LE", item.getPrice()));
         quantity_tv.setText(String.valueOf(counter));
         decrement_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +47,7 @@ public class BasketDialogActivity extends AppCompatActivity {
                 if (counter > 1)
                  counter--;
                 quantity_tv.setText(String.valueOf(counter));
-                itemSubTotal.setText(String.format("%.2f", (Double.parseDouble(itemPrice.getText().toString())* (Integer.parseInt(quantity_tv.getText().toString())))));
+                itemSubTotal.setText(String.format(Locale.getDefault(), "%.2f LE", (item.getPrice() * (Integer.parseInt(quantity_tv.getText().toString())))));
 
             }
         });
@@ -57,7 +57,7 @@ public class BasketDialogActivity extends AppCompatActivity {
                 if (counter < 20)
                     counter++;
                 quantity_tv.setText(String.valueOf(counter));
-                itemSubTotal.setText(String.format("%.2f",(Double.parseDouble(itemPrice.getText().toString())* (Integer.parseInt(quantity_tv.getText().toString())))));
+                itemSubTotal.setText(String.format(Locale.getDefault(), "%.2f LE",(item.getPrice() * (Integer.parseInt(quantity_tv.getText().toString())))));
 
             }
         });

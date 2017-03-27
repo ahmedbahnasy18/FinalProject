@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Ahmed on 21/03/2017.
@@ -32,7 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.CustomViewHold
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onItemClick(v, viewHolder.getPosition());
+                listener.onItemClick(v, viewHolder.getAdapterPosition());
             }
         });
         return viewHolder;
@@ -42,7 +43,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.CustomViewHold
     public void onBindViewHolder(ItemAdapter.CustomViewHolder holder, int position) {
         Item item = itemsList.get(position);
         holder.itemName.setText(item.getName());
-        holder.price.setText(String.valueOf(item.getPrice()));
+        holder.price.setText(String.format(Locale.getDefault(), "%.2f LE", item.getPrice()));
     }
 
 
