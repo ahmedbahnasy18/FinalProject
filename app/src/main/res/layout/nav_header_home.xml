@@ -5,18 +5,16 @@
     android:layout_height="@dimen/nav_header_height">
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/menu"
-        android:alpha="0.2"
+        android:src="@drawable/login_bg"
+        android:alpha="0.4"
         android:layout_height="match_parent"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.5"
-        android:background="#20000000"/>
+        android:background="#40000000"/>
 
     <TextView
         android:id="@+id/nav_header_name"
@@ -34,7 +32,7 @@
         android:id="@+id/nav_header_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:text="mostafa.ma.saleh@gmail.com"
         android:layout_alignStart="@+id/nav_header_name"
         android:layout_alignParentBottom="true"

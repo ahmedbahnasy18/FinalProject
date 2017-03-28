@@ -12,7 +12,7 @@
             android:title="Orders" />
         <item
             android:id="@+id/nav_sign_out"
-            android:icon="@android:drawable/ic_menu_close_clear_cancel"
+            android:icon="@drawable/signout"
             android:title="Sign out" />
         <item
             android:id="@+id/nav_About_US"
