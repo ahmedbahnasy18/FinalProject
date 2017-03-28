@@ -1,5 +1,6 @@
 package com.iti.finalproject;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -220,5 +222,12 @@ public class Basket_fragment extends Fragment {
         txtQuantity.setText(String.format(Locale.getDefault(), "%s%dx", txtQuantity.getText().toString(), count));
         txtTotal.setText(String.format(Locale.getDefault(),"%.2f LE", Total));
         return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 }

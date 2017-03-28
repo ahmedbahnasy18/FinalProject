@@ -4,12 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +24,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -42,7 +42,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -87,9 +88,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         signin_btn  = (Button)   v.findViewById(R.id.login);
         signUp      = (TextView) v.findViewById(R.id.sign_up);
         forgetPass  = (TextView) v.findViewById(R.id.forgot_pass);
-        LoginButton btnFacebookLogin = (LoginButton) v.findViewById(R.id.login_button);
-
-        btnFacebookLogin.setFragment(this);
+        Button btnFacebookLogin = (Button) v.findViewById(R.id.login_button);
 
         progressDialog = new ProgressDialog(getContext());
 
@@ -109,8 +108,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         signInButton = (SignInButton) v.findViewById(R.id.google_btn);
         signInButton.setOnClickListener(this);
 
-        ((TextView) signInButton.getChildAt(0)).setText("Google");
-        ((TextView) signInButton.getChildAt(0)).setTextSize(15);
+        TextView googleButtonText = (TextView) signInButton.getChildAt(0);
+        googleButtonText.setTypeface(Typeface.create("sans-serif-medium", android.R.style.TextAppearance_DeviceDefault_Widget));
+        googleButtonText.setText("Google");
+        googleButtonText.setTextSize(15);
+        googleButtonText.setTextColor(Color.BLACK);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -125,25 +127,32 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             }
         };
         //------------------------------------------------------
-        btnFacebookLogin.setReadPermissions("email", "public_profile");
-        btnFacebookLogin.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        progressDialog.setMessage("Log In..........");
-                        progressDialog.show();
-                        firebaseAuthWithFacebook(loginResult.getAccessToken());
-                    }
+        btnFacebookLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<String> permissions = Arrays.asList("email", "public_profile");
+                LoginManager loginManager = LoginManager.getInstance();
+                loginManager.logInWithReadPermissions(LoginFragment.this, permissions);
+                loginManager.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+                            @Override
+                            public void onSuccess(LoginResult loginResult) {
+                                progressDialog.setMessage("Log In..........");
+                                progressDialog.show();
+                                firebaseAuthWithFacebook(loginResult.getAccessToken());
+                            }
 
-                    @Override
-                    public void onCancel() {
-                    }
+                            @Override
+                            public void onCancel() {
+                            }
 
-                    @Override
-                    public void onError(FacebookException exception) {
-                        Toast.makeText(getActivity(), exception.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
+                            @Override
+                            public void onError(FacebookException exception) {
+                                Toast.makeText(getActivity(), exception.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
+            }
+        });
         return v;
     }
 

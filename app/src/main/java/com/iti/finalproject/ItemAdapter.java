@@ -2,12 +2,14 @@ package com.iti.finalproject;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,12 +19,13 @@ import java.util.Locale;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.CustomViewHolder>{
 
-    private List<Item> itemsList;
+    private List<Item> itemsList, fullList;
     private Activity activity;
     CustomItemClickListener listener;
 
     public ItemAdapter(Activity activity, List<Item> itemsList, CustomItemClickListener listener) {
         this.itemsList = itemsList;
+        this.fullList = new ArrayList<>(itemsList);
         this.activity = activity;
         this.listener = listener;
     }
@@ -46,6 +49,29 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.CustomViewHold
         holder.price.setText(String.format(Locale.getDefault(), "%.2f LE", item.getPrice()));
     }
 
+    void filter(final String filter) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                itemsList.clear();
+                if (TextUtils.isEmpty(filter))
+                    itemsList.addAll(fullList);
+                else
+                    for (Item item : fullList)
+                        if (item.getName().toLowerCase().contains(filter.toLowerCase()))
+                            itemsList.add(item);
+
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        notifyDataSetChanged();
+                    }
+                });
+            }
+        }).start();
+
+    }
 
     @Override
     public int getItemCount() {

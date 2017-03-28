@@ -1,7 +1,5 @@
 package com.iti.finalproject;
 
-import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,7 +53,7 @@ public class DatabaseAdapter {
         getDatabase().getReference("Chiefs").child(chief.getId()).setValue(chief);
     }
 
-    public void addChiefRating(final String ChiefID, final float Rating){
+    public void addChiefRating(final String ChiefID, String OrderID, final float Rating){
         if (Rating > 5 || Rating < 0)
             throw new IllegalArgumentException();
         getDatabase().getReference("Chiefs").child(ChiefID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -75,6 +73,7 @@ public class DatabaseAdapter {
 
             }
         });
+        getDatabase().getReference("Orders").child(OrderID).child("rated").setValue(true);
     }
 
 }

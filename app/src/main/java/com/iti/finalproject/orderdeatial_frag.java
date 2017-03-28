@@ -98,8 +98,19 @@ public class orderdeatial_frag extends Fragment {
         getActivity().setTitle("Details");
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_orderdeatial_frag, container, false);
-        Float price = null;
-        String name=null;
+
+        final TextView txtRatingMessage = (TextView) v.findViewById(R.id.rating_message);
+
+        if(myorder.getStatus() == Order.STATUS_DELIVERED && !myorder.isRated()){
+            v.findViewById(R.id.rating_layout).setVisibility(View.VISIBLE);
+        } else if (myorder.getStatus() != Order.STATUS_DELIVERED){
+            txtRatingMessage.setVisibility(View.VISIBLE);
+            txtRatingMessage.setText("Sorry, but you can only rate the order once it has been delivered!");
+        } else if (myorder.isRated()){
+            txtRatingMessage.setVisibility(View.VISIBLE);
+            txtRatingMessage.setText("You've already rated this order, Thank you!");
+        }
+
         qality_rate=(RatingBar)v.findViewById(R.id.qualiry_rate);
         time_rate=(RatingBar)v.findViewById(R.id.time_rate);
         price_rate=(RatingBar)v.findViewById(R.id.price_rate);
@@ -122,8 +133,10 @@ public class orderdeatial_frag extends Fragment {
                 rating += (time_rate.getRating() * 0.25);
                 rating += (price_rate.getRating() * 0.25);
                 rating += (all_experince.getRating() * 0.25);
-                DatabaseAdapter.getInstance().addChiefRating(myorder.getChiefID(), rating);
-
+                DatabaseAdapter.getInstance().addChiefRating(myorder.getChiefID(),myorder.getId(), rating);
+                getView().findViewById(R.id.rating_layout).setVisibility(View.GONE);
+                txtRatingMessage.setVisibility(View.VISIBLE);
+                txtRatingMessage.setText("Thank you!");
             }
         });
 //-------------------------------------------------------------------------------

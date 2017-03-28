@@ -18,8 +18,9 @@ public class Order implements Parcelable {
     public static final int STATUS_PENDING = 0;
     public static final int STATUS_CONFIRMED = 1;
     public static final int STATUS_CANCELED = 2;
-    public static final int STATUS_DELIVERED = 3;
-    public static final int STATUS_NOT_DELIVERED = 4;
+    public static final int STATUS_NOT_DELIVERED = 3;
+    public static final int STATUS_DELIVERED = 4;
+
 
     private String id;
     private List<Item> items;
