@@ -174,6 +174,7 @@ public class SignupFragment extends Fragment {
         address.setError(null);
 
         boolean cancel = false;
+        View focusView = null;
 
         String name_value = name.getText().toString().trim();
         String email_value = email.getText().toString().trim();
@@ -181,34 +182,45 @@ public class SignupFragment extends Fragment {
         final String phone_value = phone.getText().toString().trim();
         final String address_value = address.getText().toString().trim();
 
-        if (TextUtils.isEmpty(name_value)){
-            name.setError("This Field is Required");
+        if(TextUtils.isEmpty(address_value)){
+            address.setError("This Field is Required");
+            focusView = address;
             cancel = true;
         }
-        if (TextUtils.isEmpty(email_value)){
-            //email is empty
-            email.setError("This Field is Required");
+
+        if (TextUtils.isEmpty(phone_value)){
+            phone.setError("This Field is Required");
+            focusView = phone;
+            cancel = true;
+        } else if (!phone_value.matches("01[120][0-9]{8}")){
+            phone.setError("This Phone Number is Invalid");
+            focusView = phone;
             cancel = true;
         }
 
         if (TextUtils.isEmpty(pass_value)){
             //email is empty
             pass.setError("This Field is Required");
+            focusView = pass;
             cancel = true;
         }
 
-        if (TextUtils.isEmpty(phone_value)){
-            phone.setError("This Field is Required");
+        if (TextUtils.isEmpty(email_value)){
+            //email is empty
+            email.setError("This Field is Required");
+            focusView = email;
             cancel = true;
         }
 
-        if(TextUtils.isEmpty(address_value)){
-            address.setError("This Field is Required");
+        if (TextUtils.isEmpty(name_value)){
+            name.setError("This Field is Required");
+            focusView = name;
             cancel = true;
         }
 
-        if (!cancel) {
-
+        if (cancel) {
+            focusView.requestFocus();
+        } else {
             progressDialog.setMessage("Registering User..........");
             progressDialog.show();
 
@@ -227,7 +239,8 @@ public class SignupFragment extends Fragment {
                                 Toast.makeText(getContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
                             } else {
                                 progressDialog.dismiss();
-                                Toast.makeText(getContext(), "Registration failed", Toast.LENGTH_SHORT).show();
+                                String err = task.getException().getLocalizedMessage();
+                                Toast.makeText(getContext(), TextUtils.isEmpty(err)?"Registration failed":err, Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -235,7 +248,7 @@ public class SignupFragment extends Fragment {
 
     }
 
-    class locationlis implements LocationListener {
+    private class locationlis implements LocationListener {
 
         Geocoder geocoder = new Geocoder(getApplicationContext());
 

@@ -84,6 +84,10 @@ public class UserProfileFragment extends Fragment {
                 cancel = true;
                 txtPhone.setError("This field is required!");
                 focusView = txtPhone;
+            } else if (!txtPhone.getText().toString().matches("01[120][0-9]{8}")){
+                txtPhone.setError("This Phone Number is Invalid");
+                focusView = txtPhone;
+                cancel = true;
             }
 
             if (TextUtils.isEmpty(txtName.getText().toString())){
