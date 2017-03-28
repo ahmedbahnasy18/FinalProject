@@ -161,8 +161,8 @@ public class Basket_fragment extends Fragment {
                 } else {
                     android.app.AlertDialog.Builder alertdialog = new android.app.AlertDialog.Builder(getActivity());
 
-                    alertdialog.setMessage("order confirm");
-                    alertdialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    alertdialog.setMessage("You're about to place your order, Do you want to continue");
+                    alertdialog.setPositiveButton("Sure", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             DatabaseAdapter.getInstance().submitOrder(
@@ -183,7 +183,7 @@ public class Basket_fragment extends Fragment {
                         }
 
                     });
-                    alertdialog.setNegativeButton("cancel", null);
+                    alertdialog.setNegativeButton("No", null);
                     alertdialog.create();
                     alertdialog.show();
                 }

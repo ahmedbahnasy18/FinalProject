@@ -3,6 +3,7 @@ package com.iti.finalproject;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -73,10 +74,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View navigationViewHeader = navigationView.getHeaderView(0);
-        ((TextView) navigationViewHeader.findViewById(R.id.nav_header_name)).setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-        ((TextView) navigationViewHeader.findViewById(R.id.nav_header_email)).setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                View navigationViewHeader = navigationView.getHeaderView(0);
+                ((TextView) navigationViewHeader.findViewById(R.id.nav_header_name)).setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                ((TextView) navigationViewHeader.findViewById(R.id.nav_header_email)).setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            }
+        }, 500);
         navigationView.setNavigationItemSelectedListener(this);
         //....................................................
         setTitle("ChiefsList");
