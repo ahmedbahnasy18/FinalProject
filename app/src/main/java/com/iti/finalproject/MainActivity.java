@@ -5,6 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
+
 public class MainActivity extends AppCompatActivity implements SenderInteface{
 
     String mail;
@@ -12,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements SenderInteface{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null)

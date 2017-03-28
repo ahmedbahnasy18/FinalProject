@@ -35,8 +35,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -169,42 +167,71 @@ public class SignupFragment extends Fragment {
 
     private void registerUser () {
 
-        String email_value = email.getText().toString().trim();
-        String pass_value  = pass.getText().toString().trim();
+        name.setError(null);
+        email.setError(null);
+        pass.setError(null);
+        phone.setError(null);
+        address.setError(null);
 
+        boolean cancel = false;
+
+        String name_value = name.getText().toString().trim();
+        String email_value = email.getText().toString().trim();
+        String pass_value  = pass.getText().toString();
+        final String phone_value = phone.getText().toString().trim();
+        final String address_value = address.getText().toString().trim();
+
+        if (TextUtils.isEmpty(name_value)){
+            name.setError("This Field is Required");
+            cancel = true;
+        }
         if (TextUtils.isEmpty(email_value)){
             //email is empty
-            Toast.makeText(getContext(),"pleas enter email",Toast.LENGTH_SHORT).show();
-            return;
+            email.setError("This Field is Required");
+            cancel = true;
         }
 
         if (TextUtils.isEmpty(pass_value)){
             //email is empty
-            Toast.makeText(getContext(),"pleas enter pass",Toast.LENGTH_SHORT).show();
-            return;
+            pass.setError("This Field is Required");
+            cancel = true;
         }
 
-        progressDialog.setMessage("Registering User..........");
-        progressDialog.show();
+        if (TextUtils.isEmpty(phone_value)){
+            phone.setError("This Field is Required");
+            cancel = true;
+        }
 
-        firebaseAuth.createUserWithEmailAndPassword(email_value,pass_value)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            user.updateProfile(new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(name.getText().toString()).build());
-                            DatabaseAdapter.getInstance().addUserInfo(user.getUid(),phone.getText().toString(), Collections.singletonList(address.getText().toString()));
-                            getActivity().finish();
-                            startActivity(new Intent(getContext(),HomeActivity.class));
+        if(TextUtils.isEmpty(address_value)){
+            address.setError("This Field is Required");
+            cancel = true;
+        }
 
-                            Toast.makeText(getContext(),"Registered Successfully",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getContext(),"Registration failed",Toast.LENGTH_SHORT).show();
+        if (!cancel) {
+
+            progressDialog.setMessage("Registering User..........");
+            progressDialog.show();
+
+            firebaseAuth.createUserWithEmailAndPassword(email_value, pass_value)
+                    .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                user.updateProfile(new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(name.getText().toString()).build());
+                                DatabaseAdapter.getInstance().addUserInfo(user.getUid(), phone_value, Collections.singletonList(address_value));
+                                getActivity().finish();
+                                startActivity(new Intent(getContext(), HomeActivity.class));
+
+                                Toast.makeText(getContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
+                            } else {
+                                progressDialog.dismiss();
+                                Toast.makeText(getContext(), "Registration failed", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
 
     }
 
