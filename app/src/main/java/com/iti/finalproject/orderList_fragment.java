@@ -132,7 +132,6 @@ public class orderList_fragment extends Fragment {
                 adapter = new MyrecyclerviewAdapter(getActivity(), order, new CustomItemClickListener() {
                     @Override
                     public void onItemClick(View v, int position) {
-                        //TODO: add orders
                         orderdeatial_frag orderdeatialFrag = orderdeatial_frag.objInstance(order.get(position));
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.content_home, orderdeatialFrag)

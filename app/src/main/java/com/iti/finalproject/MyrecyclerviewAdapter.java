@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -65,6 +69,23 @@ public class MyrecyclerviewAdapter extends RecyclerView.Adapter<MyrecyclerviewAd
                 holder.imgOrderStatus.setColorFilter(Color.RED);
                 break;
         }
+        DatabaseAdapter
+                .getInstance()
+                .getDatabase()
+                .getReference("Chiefs")
+                .child(orderlist.get(holder.getAdapterPosition()).getChiefID())
+                .child("name")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        holder.txtChiefName.setText(dataSnapshot.getValue(String.class));
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,12 +130,14 @@ public class MyrecyclerviewAdapter extends RecyclerView.Adapter<MyrecyclerviewAd
         protected TextView orderdate;
         protected TextView orderstatus;
         protected ImageView imgOrderStatus;
+        protected TextView txtChiefName;
         public ViewHolder(View itemView) {
             super(itemView);
             ordernum=(TextView)itemView.findViewById(R.id.ordernum_text);
             orderdate=(TextView)itemView.findViewById(R.id.order_date_text);
             orderstatus = (TextView) itemView.findViewById(R.id.order_status_text);
             imgOrderStatus = (ImageView) itemView.findViewById(R.id.img_order_status);
+            txtChiefName = (TextView) itemView.findViewById(R.id.txt_chief_name);
 
 
         }

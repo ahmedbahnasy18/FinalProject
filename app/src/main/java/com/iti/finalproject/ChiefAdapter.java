@@ -1,12 +1,15 @@
 package com.iti.finalproject;
 
 import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ public class ChiefAdapter extends RecyclerView.Adapter<ChiefAdapter.CustomViewHo
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onItemClick(v, viewHolder.getPosition());
+                listener.onItemClick(v, viewHolder.getAdapterPosition());
             }
         });
         return viewHolder;
@@ -45,33 +48,10 @@ public class ChiefAdapter extends RecyclerView.Adapter<ChiefAdapter.CustomViewHo
         Chief cheif = chiefList.get(position);
         holder.cheifName.setText(cheif.getName());
         holder.deliverIn.setText(cheif.getDeliverIn());
-        switch (cheif.getRating()){
-            case 1:
-                holder.star1.setImageResource(android.R.drawable.star_big_on);
-                break;
-            case 2:
-                holder.star1.setImageResource(android.R.drawable.star_big_on);
-                holder.star2.setImageResource(android.R.drawable.star_big_on);
-                break;
-            case 3:
-                holder.star1.setImageResource(android.R.drawable.star_big_on);
-                holder.star2.setImageResource(android.R.drawable.star_big_on);
-                holder.star3.setImageResource(android.R.drawable.star_big_on);
-                break;
-            case 4:
-                holder.star1.setImageResource(android.R.drawable.star_big_on);
-                holder.star2.setImageResource(android.R.drawable.star_big_on);
-                holder.star3.setImageResource(android.R.drawable.star_big_on);
-                holder.star4.setImageResource(android.R.drawable.star_big_on);
-                break;
-            case 5:
-                holder.star1.setImageResource(android.R.drawable.star_big_on);
-                holder.star2.setImageResource(android.R.drawable.star_big_on);
-                holder.star3.setImageResource(android.R.drawable.star_big_on);
-                holder.star4.setImageResource(android.R.drawable.star_big_on);
-                holder.star5.setImageResource(android.R.drawable.star_big_on);
-                break;
-        }
+        holder.ratingBar.setRating(cheif.getRating());
+        LayerDrawable stars = (LayerDrawable) holder.ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(0).setColorFilter(ContextCompat.getColor(activity, android.R.color.darker_gray), PorterDuff.Mode.SRC_ATOP);
     }
 
     void filter(final String filter) {
@@ -106,21 +86,13 @@ public class ChiefAdapter extends RecyclerView.Adapter<ChiefAdapter.CustomViewHo
     public class CustomViewHolder extends RecyclerView.ViewHolder{
         protected TextView cheifName;
         protected TextView deliverIn;
-        protected ImageView star1;
-        protected ImageView star2;
-        protected ImageView star3;
-        protected ImageView star4;
-        protected ImageView star5;
+        protected RatingBar ratingBar;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
             this.cheifName = (TextView) itemView.findViewById(R.id.cheifname);
             this.deliverIn = (TextView) itemView.findViewById(R.id.deliverin);
-            this.star1 = (ImageView) itemView.findViewById(R.id.star1);
-            this.star2 = (ImageView) itemView.findViewById(R.id.star2);
-            this.star3 = (ImageView) itemView.findViewById(R.id.star3);
-            this.star4 = (ImageView) itemView.findViewById(R.id.star4);
-            this.star5 = (ImageView) itemView.findViewById(R.id.star5);
+            this.ratingBar = (RatingBar) itemView.findViewById(R.id.rating_bar);
         }
     }
 }

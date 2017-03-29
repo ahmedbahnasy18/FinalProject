@@ -1,15 +1,18 @@
 package com.iti.finalproject;
 
-import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 
@@ -25,11 +28,7 @@ public class ChiefInfoFragment extends Fragment {
 
     ImageView cheifImage;
     TextView cheifName;
-    ImageView star1;
-    ImageView star2;
-    ImageView star3;
-    ImageView star4;
-    ImageView star5;
+    RatingBar ratingBar;
     TextView openingHours;
     TextView pickUpAvail;
     TextView deliveryAvail;
@@ -101,11 +100,8 @@ public class ChiefInfoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_chief_info, container, false);
         cheifImage = (ImageView) v.findViewById(R.id.cheifimage);
         cheifName = (TextView) v.findViewById(R.id.cheifname);
-        star1 = (ImageView) v.findViewById(R.id.star1);
-        star2 = (ImageView) v.findViewById(R.id.star2);
-        star3 = (ImageView) v.findViewById(R.id.star3);
-        star4 = (ImageView) v.findViewById(R.id.star4);
-        star5 = (ImageView) v.findViewById(R.id.star5);
+        ratingBar = (RatingBar) v.findViewById(R.id.rating_bar);
+
 
         openingHours = (TextView) v.findViewById(R.id.openinghours);
         pickUpAvail = (TextView) v.findViewById(R.id.pickupavailability);
@@ -113,34 +109,7 @@ public class ChiefInfoFragment extends Fragment {
         deliversIn = (TextView) v.findViewById(R.id.deliversin);
         //Chief cheif = getIntent().getParcelableExtra("CHEIF_INFO");
         cheifName.setText(mChief.getName());
-        switch (mChief.getRating()){
-            case 1:
-                star1.setImageResource(android.R.drawable.star_big_on);
-                break;
-            case 2:
-                star1.setImageResource(android.R.drawable.star_big_on);
-                star2.setImageResource(android.R.drawable.star_big_on);
-                break;
-            case 3:
-                star1.setImageResource(android.R.drawable.star_big_on);
-                star2.setImageResource(android.R.drawable.star_big_on);
-                star3.setImageResource(android.R.drawable.star_big_on);
-                break;
-            case 4:
-                star1.setImageResource(android.R.drawable.star_big_on);
-                star2.setImageResource(android.R.drawable.star_big_on);
-                star3.setImageResource(android.R.drawable.star_big_on);
-                star4.setImageResource(android.R.drawable.star_big_on);
-                break;
-            case 5:
-
-                star1.setImageResource(android.R.drawable.star_big_on);
-                star2.setImageResource(android.R.drawable.star_big_on);
-                star3.setImageResource(android.R.drawable.star_big_on);
-                star4.setImageResource(android.R.drawable.star_big_on);
-                star5.setImageResource(android.R.drawable.star_big_on);
-                break;
-        }
+        ratingBar.setRating(mChief.getRating());
         openingHours.setText(mChief.getOpenHours());
         if(mChief.isPickUp()){
             pickUpAvail.setText("Available");
@@ -150,6 +119,9 @@ public class ChiefInfoFragment extends Fragment {
         }else{deliveryAvail.setText("Not Available");}
         deliversIn.setText(mChief.getDeliverIn());
         getActivity().setTitle(mChief.getName() + " Info");
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(0).setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.darker_gray), PorterDuff.Mode.SRC_ATOP);
         return v;
     }
 

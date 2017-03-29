@@ -14,13 +14,22 @@
             android:padding="7dp">
 
             <TextView
+                android:text="Mostafa Saleh"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:textStyle="bold"
+                android:id="@+id/txt_chief_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#335508846"
                 android:textStyle="bold"
-                android:textSize="30sp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
                 android:id="@+id/ordernum_text"/>
 
             <TextView
