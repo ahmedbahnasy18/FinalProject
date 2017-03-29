@@ -107,7 +107,7 @@ public class SignupFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                progressDialog.setMessage("loading location..........");
+                progressDialog.setMessage("Retrieving Your Location...");
                 progressDialog.show();
                 locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
