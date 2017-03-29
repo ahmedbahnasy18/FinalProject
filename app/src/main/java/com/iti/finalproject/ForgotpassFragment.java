@@ -43,13 +43,12 @@ public class ForgotpassFragment extends Fragment {
             public void onClick(View view) {
 
                 if (TextUtils.isEmpty(enter_mail.getText().toString())){
-                    //email is empty
-                    Toast.makeText(getContext(),"pleas enter email",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"You need to enter an Email address",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                firebaseAuth.getInstance().sendPasswordResetEmail(enter_mail.getText().toString());
-                Toast.makeText(getContext(),"follow the link to reset your pass",Toast.LENGTH_LONG).show();
+                FirebaseAuth.getInstance().sendPasswordResetEmail(enter_mail.getText().toString());
+                Toast.makeText(getContext(),"An Email has been sent to the above email address with further instructions",Toast.LENGTH_LONG).show();
 
             }
         });

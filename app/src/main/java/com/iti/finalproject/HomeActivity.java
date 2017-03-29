@@ -44,8 +44,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //listener to check if there opened fragment to set back button
-        //toggle is the menu button on leftside
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
@@ -66,7 +64,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //setToolbarNavigationClickListener means that the toggle act as back button
         toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +81,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }, 500);
         navigationView.setNavigationItemSelectedListener(this);
-        //....................................................
+
         setTitle("ChiefsList");
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -99,17 +96,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onItemClick(View v, int position) {
                         oChief = chiefsList.get(position);
-                        //ChiefItemsFragment chiefItemsFragment = new ChiefItemsFragment();
                         ChiefItemsFragment chiefItemsFragment = ChiefItemsFragment.objInstance(oChief);
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.content_home,chiefItemsFragment)
                                 .addToBackStack("")
                                 .commit();
-
-                        // Toast.makeText(HomeActivity.this,"you clicked : "+ chiefsList.get(position).getName(),Toast.LENGTH_LONG).show();
-//                Intent i = new Intent(HomeActivity.this,ChiefItems.class);
-//                i.putExtra("CHEIF_INTENT",chiefsList.get(position));
-//                startActivity(i);
                     }
                 });
                 recyclerView.setAdapter(mAdapter);
@@ -117,7 +108,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                //Toast.makeText(HomeActivity.this, "Something Went Wrong, Please Try Agian Later!", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -149,7 +139,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         ((SearchView) menu.findItem(R.id.action_search).getActionView())
                 .setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -170,17 +159,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == android.R.id.home){
             onBackPressed();
         }else if (id == R.id.info) {
-//        Intent intent = new Intent(this,ChiefInfo.class);
-//        intent.putExtra("CHEIF_INFO",oChief);
-//        startActivity(intent);
             ChiefInfoFragment chiefInfoFragment = ChiefInfoFragment.objInstance(oChief);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_home, chiefInfoFragment)
@@ -192,7 +175,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_Profile) {
@@ -215,8 +197,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     .setTitle("About")
                     .setMessage("Made by:\n" +
                             "\t\tAhmed Bahnasy\n" +
-                            "\t\tEsraa\n" +
-                            "\t\tSara\n" +
+                            "\t\tEsraa Gomaa\n" +
+                            "\t\tSara Mohammed\n" +
                             "\t\tMostafa Saleh")
                     .setPositiveButton("Close", null)
                     .show();

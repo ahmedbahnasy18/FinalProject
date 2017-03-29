@@ -11,8 +11,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements SenderInteface{
 
-    String mail;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +49,6 @@ public class MainActivity extends AppCompatActivity implements SenderInteface{
         bundle.putString("e_mail",user_mail);
         forgotpassFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.activity_main,forgotpassFragment).addToBackStack("").commit();
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
 
     }
 

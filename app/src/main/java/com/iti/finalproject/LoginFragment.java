@@ -23,7 +23,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
@@ -52,8 +51,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public LoginFragment() {}
     SenderInteface senderInteface;
 
-    private final static String TAG = "test2";
-
     private EditText email;
     private EditText pass;
     private Button   signin_btn;
@@ -77,7 +74,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+
         View v      =  inflater.inflate(R.layout.fragment_login, container, false);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -94,8 +91,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         signin_btn.setOnClickListener(this);
         forgetPass.setOnClickListener(this);
-
-        //-------------------google----------------------
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -119,14 +114,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    //Toast.makeText(getActivity(), user.getDisplayName(), Toast.LENGTH_SHORT).show();
                     Intent i=new Intent(getContext(),HomeActivity.class);
                     startActivity(i);
                     getActivity().finish();
                 }
             }
         };
-        //------------------------------------------------------
+
         btnFacebookLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +130,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 loginManager.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
                             @Override
                             public void onSuccess(LoginResult loginResult) {
-                                progressDialog.setMessage("Log In..........");
+                                progressDialog.setMessage("Authenticating...");
                                 progressDialog.show();
                                 firebaseAuthWithFacebook(loginResult.getAccessToken());
                             }
@@ -218,25 +212,23 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         }
 
-    //------------mail , pass-----------
+
     private void userLogin() {
 
         String email_value = email.getText().toString().trim();
         String pass_value  = pass.getText().toString().trim();
 
         if (TextUtils.isEmpty(email_value)){
-            //email is empty
-            Toast.makeText(getContext(),"pleas enter email",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Please Anter an Email Address",Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (TextUtils.isEmpty(pass_value)){
-            //email is empty
-            Toast.makeText(getContext(),"pleas enter pass",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"You Need to Enter a Password",Toast.LENGTH_SHORT).show();
             return;
         }
 
-        progressDialog.setMessage("Log In..........");
+        progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(email_value,pass_value)
@@ -254,9 +246,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    //-----------google--------------------
     private void signIn() {
-        progressDialog.setMessage("Log In..........");
+        progressDialog.setMessage("Authenticating...");
         progressDialog.show();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, 2017);

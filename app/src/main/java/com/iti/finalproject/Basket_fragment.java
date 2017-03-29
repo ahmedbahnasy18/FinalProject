@@ -30,43 +30,12 @@ import java.util.Comparator;
 import java.util.Locale;
 
 public class Basket_fragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
     private static final String ARG_PARAMOBJ = "paramObj";
     private static final String ARG_PARAMCHIEF = "paramChief";
 
     private ArrayList<Item> mItems;
     private Chief mChief;
-
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-    public Basket_fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Basket_fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Basket_fragment newInstance(String param1, String param2) {
-        Basket_fragment fragment = new Basket_fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public static Basket_fragment objInstance(ArrayList<Item> items, Chief chief) {
         Basket_fragment fragment = new Basket_fragment();
@@ -82,8 +51,6 @@ public class Basket_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
             mItems = getArguments().getParcelableArrayList(ARG_PARAMOBJ);
             mChief = getArguments().getParcelable(ARG_PARAMCHIEF);
         }
@@ -92,14 +59,11 @@ public class Basket_fragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Basket");
-        // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_basket_fragment, container, false);
         final Spinner dropdown = (Spinner)v.findViewById(R.id.spinner1);
         final ArrayList<String> items = new ArrayList<>();
@@ -149,7 +113,7 @@ public class Basket_fragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
         v.findViewById(R.id.checkout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,7 +154,6 @@ public class Basket_fragment extends Fragment {
             }
         });
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         Collections.sort(mItems, new Comparator<Item>() {
             @Override
             public int compare(Item item1, Item item2)

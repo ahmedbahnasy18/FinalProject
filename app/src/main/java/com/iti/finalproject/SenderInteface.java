@@ -6,6 +6,6 @@ package com.iti.finalproject;
 
 public interface SenderInteface {
 
-    public void SignUpFragment();
-    public void ForgotPassFragment(String user_mail);
+    void SignUpFragment();
+    void ForgotPassFragment(String user_mail);
 }

@@ -12,7 +12,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -57,8 +56,6 @@ public class SignupFragment extends Fragment {
     LocationManager locationManager;
     private Intent gpsSettingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 
-    double lat;
-    double longti;
     List<Address> addresses = null;
 
     locationlis mLocationListener;
@@ -98,9 +95,6 @@ public class SignupFragment extends Fragment {
             }
         });
 
-
-
-
         v.findViewById(R.id.search_for_address).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,7 +107,6 @@ public class SignupFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                //---------------GPS permission-------------
                 progressDialog.setMessage("loading location..........");
                 progressDialog.show();
                 locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -132,28 +125,15 @@ public class SignupFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-
-
-    }
-
-    //  ------------------to open google API autocomplet -----------------*/
     public void findPlace() {
         try {
             Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).build(getActivity());
             startActivityForResult(intent, 1);
-        }
-            catch (GooglePlayServicesRepairableException e) {
-
-        }   catch (GooglePlayServicesNotAvailableException e) {
-
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+                e.printStackTrace();
         }
     }
 
-    // A place has been received; use requestCode to track the request.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -199,14 +179,12 @@ public class SignupFragment extends Fragment {
         }
 
         if (TextUtils.isEmpty(pass_value)){
-            //email is empty
             pass.setError("This Field is Required");
             focusView = pass;
             cancel = true;
         }
 
         if (TextUtils.isEmpty(email_value)){
-            //email is empty
             email.setError("This Field is Required");
             focusView = email;
             cancel = true;
@@ -221,7 +199,7 @@ public class SignupFragment extends Fragment {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            progressDialog.setMessage("Registering User..........");
+            progressDialog.setMessage("Registering User...");
             progressDialog.show();
 
             firebaseAuth.createUserWithEmailAndPassword(email_value, pass_value)

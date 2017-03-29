@@ -53,9 +53,19 @@ public class ChiefAdapter extends RecyclerView.Adapter<ChiefAdapter.CustomViewHo
         holder.deliverIn.setText(cheif.getDeliverIn());
         holder.ratingBar.setRating(cheif.getRating());
         if(!TextUtils.isEmpty(cheif.getImage()))
-            Picasso.with(activity).load(cheif.getImage()).resize(200,200).placeholder(R.drawable.animation_loading).error(R.drawable.blank_chief).into(holder.chiefImage);
+            Picasso
+                    .with(activity)
+                    .load(cheif.getImage())
+                    .resize(200,200)
+                    .placeholder(R.drawable.animation_loading)
+                    .error(R.drawable.blank_chief)
+                    .into(holder.chiefImage);
         else
-            Picasso.with(activity).load(R.drawable.blank_chief).into(holder.chiefImage);
+            Picasso
+                    .with(activity)
+                    .load(R.drawable.blank_chief)
+                    .into(holder.chiefImage);
+
         LayerDrawable stars = (LayerDrawable) holder.ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
         stars.getDrawable(1).setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
@@ -92,12 +102,12 @@ public class ChiefAdapter extends RecyclerView.Adapter<ChiefAdapter.CustomViewHo
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder{
-        protected TextView cheifName;
-        protected TextView deliverIn;
-        protected RatingBar ratingBar;
-        protected ImageView chiefImage;
+        TextView cheifName;
+        TextView deliverIn;
+        RatingBar ratingBar;
+        ImageView chiefImage;
 
-        public CustomViewHolder(View itemView) {
+        CustomViewHolder(View itemView) {
             super(itemView);
             this.cheifName = (TextView) itemView.findViewById(R.id.cheifname);
             this.deliverIn = (TextView) itemView.findViewById(R.id.deliverin);

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class BasketDialogActivity extends AppCompatActivity {
+
     TextView description;
     TextView itemPrice;
     TextView itemSubTotal;
