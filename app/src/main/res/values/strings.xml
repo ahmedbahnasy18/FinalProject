@@ -1,11 +1,8 @@
 <resources>
-    <string name="app_name">Final Project</string>
+    <string name="app_name">BelHana</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="facebook_app_id">195911950898375</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

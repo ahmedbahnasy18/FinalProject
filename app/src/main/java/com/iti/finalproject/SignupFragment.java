@@ -199,7 +199,7 @@ public class SignupFragment extends Fragment {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            progressDialog.setMessage("Registering User...");
+            progressDialog.setMessage("Please wait...");
             progressDialog.show();
 
             firebaseAuth.createUserWithEmailAndPassword(email_value, pass_value)
