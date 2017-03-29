@@ -13,7 +13,7 @@
             android:orientation="vertical"
             android:padding="7dp">
 
-            <TextView
+            <!--<TextView
                 android:text="Mostafa Saleh"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -21,15 +21,25 @@
                 android:id="@+id/txt_chief_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"/>
+                android:textSize="25sp"/>-->
 
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#335508846"
                 android:textStyle="bold"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
+                android:id="@+id/ordernum_text"/>-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#335508846"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
                 android:id="@+id/ordernum_text"/>
 
             <TextView
@@ -57,6 +67,7 @@
                 android:text="Confirmed"
                 android:textStyle="bold"
                 android:layout_marginEnd="2dp"
+                android:layout_marginTop="5dp"
                 android:layout_alignParentTop="true"
                 android:id="@+id/order_status_text"/>
 

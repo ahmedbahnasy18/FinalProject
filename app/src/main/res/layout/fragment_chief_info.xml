@@ -1,130 +1,156 @@
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:background="?android:colorBackground"
-    android:clickable="true"
-    android:orientation="vertical"
-    android:padding="25dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent"
+    android:background="?android:colorBackground">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:srcCompat="@android:color/darker_gray"
-        android:id="@+id/cheifimage" />
-
-    <TextView
-        android:text="Mostafa Saleh"
-        android:layout_toEndOf="@+id/cheifimage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cheifname"
-
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="5dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <RatingBar
-        android:id="@+id/rating_bar"
-        android:layout_toEndOf="@+id/cheifimage"
-        android:layout_below="@+id/cheifname"
-        android:layout_marginStart="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
-        android:isIndicator="true"/>
+        android:src="@drawable/info_bg"
+        android:scaleType="centerCrop"
+        android:alpha="0.4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/header_separator"
-        android:layout_below="@+id/cheifimage"
-        android:background="@android:color/darker_gray"/>
+        android:layout_height="match_parent"
+        android:background="#99000000"/>
 
-    <LinearLayout
-        android:id="@+id/labels"
-        android:layout_below="@+id/header_separator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:orientation="vertical">
-        <TextView
-            android:text="Opening Hours :"
-            android:layout_marginTop="25dp"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView4" />
-        <TextView
-            android:text="Pick Up :"
-            android:layout_marginTop="45dp"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6" />
-        <TextView
-            android:text="Delivery :"
-            android:layout_marginTop="45dp"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView8" />
-        <TextView
-            android:text="Delivers in :"
-            android:layout_marginTop="45dp"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView10" />
-    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:padding="25dp">
 
-    <LinearLayout
-        android:layout_toEndOf="@+id/labels"
-        android:layout_alignTop="@+id/labels"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@android:color/darker_gray"
+            android:id="@+id/cheifimage" />
 
         <TextView
-            android:text="11:30 am - 12:00 am"
-            android:layout_marginTop="25dp"
-            android:textSize="18sp"
+            android:text="Mostafa Saleh"
+            android:layout_toEndOf="@+id/cheifimage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/openinghours" />
+            android:id="@+id/cheifname"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
-
-        <TextView
-            android:text="Available"
-            android:layout_marginTop="45dp"
-            android:textSize="18sp"
+        <RatingBar
+            android:id="@+id/rating_bar"
+            android:layout_toEndOf="@+id/cheifimage"
+            android:layout_below="@+id/cheifname"
+            android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/pickupavailability"/>
+            style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
+            android:isIndicator="true"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/header_separator"
+            android:layout_below="@+id/cheifimage"
+            android:background="@android:color/darker_gray"/>
 
-        <TextView
-            android:text="Unavailable"
-            android:layout_marginTop="45dp"
-            android:textSize="18sp"
+        <LinearLayout
+            android:id="@+id/labels"
+            android:layout_below="@+id/header_separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/deliveryavailability" />
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:text="Opening Hours :"
+                android:layout_marginTop="25dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4" />
+            <TextView
+                android:text="Pick Up :"
+                android:layout_marginTop="45dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6" />
+            <TextView
+                android:text="Delivery :"
+                android:layout_marginTop="45dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView8" />
+            <TextView
+                android:text="Delivers in :"
+                android:layout_marginTop="45dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView10" />
+        </LinearLayout>
 
-        <TextView
-            android:text="30 Minutes"
-            android:layout_marginTop="45dp"
-            android:textSize="18sp"
+        <LinearLayout
+            android:layout_toEndOf="@+id/labels"
+            android:layout_alignTop="@+id/labels"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/deliversin" />
-    </LinearLayout>
-</RelativeLayout>
+            android:orientation="vertical">
+
+            <TextView
+                android:text="11:30 am - 12:00 am"
+                android:layout_marginTop="25dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:id="@+id/openinghours" />
+
+
+            <TextView
+                android:text="Available"
+                android:layout_marginTop="45dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:id="@+id/pickupavailability"/>
+
+
+            <TextView
+                android:text="Unavailable"
+                android:layout_marginTop="45dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:id="@+id/deliveryavailability" />
+
+            <TextView
+                android:text="30 Minutes"
+                android:layout_marginTop="45dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:id="@+id/deliversin" />
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>

@@ -25,8 +25,10 @@
             app:srcCompat="@android:color/transparent"/>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="40dp"
+            android:layout_width="42dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="2dp"
             android:scaleType="fitXY"
             android:elevation="16dp"
             android:layout_gravity="center"
@@ -35,10 +37,11 @@
         <TextView
             android:text="0"
             android:textColor="@android:color/white"
-            android:textSize="19sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:elevation="16dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="2dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="center"

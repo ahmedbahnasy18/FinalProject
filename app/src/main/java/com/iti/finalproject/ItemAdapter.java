@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -47,6 +49,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.CustomViewHold
         Item item = itemsList.get(position);
         holder.itemName.setText(item.getName());
         holder.price.setText(String.format(Locale.getDefault(), "%.2f LE", item.getPrice()));
+        if(!TextUtils.isEmpty(item.getImage()))
+            Picasso.with(activity).load(item.getImage()).resize(200,200).placeholder(R.drawable.animation_loading).error(R.drawable.blank_item).into(holder.itemImage);
+        else
+            Picasso.with(activity).load(R.drawable.blank_item).into(holder.itemImage);
     }
 
     void filter(final String filter) {

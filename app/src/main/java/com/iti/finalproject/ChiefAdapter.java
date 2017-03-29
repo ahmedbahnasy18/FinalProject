@@ -9,8 +9,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +52,13 @@ public class ChiefAdapter extends RecyclerView.Adapter<ChiefAdapter.CustomViewHo
         holder.cheifName.setText(cheif.getName());
         holder.deliverIn.setText(cheif.getDeliverIn());
         holder.ratingBar.setRating(cheif.getRating());
+        if(!TextUtils.isEmpty(cheif.getImage()))
+            Picasso.with(activity).load(cheif.getImage()).resize(200,200).placeholder(R.drawable.animation_loading).error(R.drawable.blank_chief).into(holder.chiefImage);
+        else
+            Picasso.with(activity).load(R.drawable.blank_chief).into(holder.chiefImage);
         LayerDrawable stars = (LayerDrawable) holder.ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(1).setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
         stars.getDrawable(0).setColorFilter(ContextCompat.getColor(activity, android.R.color.darker_gray), PorterDuff.Mode.SRC_ATOP);
     }
 
@@ -87,12 +95,14 @@ public class ChiefAdapter extends RecyclerView.Adapter<ChiefAdapter.CustomViewHo
         protected TextView cheifName;
         protected TextView deliverIn;
         protected RatingBar ratingBar;
+        protected ImageView chiefImage;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
             this.cheifName = (TextView) itemView.findViewById(R.id.cheifname);
             this.deliverIn = (TextView) itemView.findViewById(R.id.deliverin);
             this.ratingBar = (RatingBar) itemView.findViewById(R.id.rating_bar);
+            this.chiefImage = (ImageView) itemView.findViewById(R.id.img_chief);
         }
     }
 }

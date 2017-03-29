@@ -16,7 +16,9 @@
             android:id="@+id/img_chief"
             android:src="@android:color/darker_gray"
             android:layout_width="80dp"
+            android:scaleType="centerCrop"
             android:layout_marginEnd="15dp"
+            android:layout_gravity="center_vertical"
             android:layout_height="match_parent" />
 
         <TextView

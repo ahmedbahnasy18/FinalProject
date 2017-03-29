@@ -1,15 +1,24 @@
 package com.iti.finalproject;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -98,6 +107,36 @@ public class orderdeatial_frag extends Fragment {
         getActivity().setTitle("Details");
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_orderdeatial_frag, container, false);
+        final TextView txtChiefName = (TextView) v.findViewById(R.id.cheifname);
+        final RatingBar ratingBar = (RatingBar) v.findViewById(R.id.rating_bar);
+        final ImageView imgChiefImage = (ImageView) v.findViewById(R.id.cheifimage);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(1).setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(0).setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.darker_gray), PorterDuff.Mode.SRC_ATOP);
+        DatabaseAdapter
+                .getInstance()
+                .getDatabase()
+                .getReference("Chiefs")
+                .child(myorder.getChiefID())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        txtChiefName.setText(dataSnapshot.child("name").getValue(String.class));
+                        ratingBar.setRating(dataSnapshot.child("rating").getValue(Float.class));
+                        Picasso.with(getActivity())
+                                .load(dataSnapshot.child("image").getValue(String.class))
+                                .resize(200,200)
+                                .placeholder(R.drawable.animation_loading)
+                                .error(R.drawable.blank_chief)
+                                .into(imgChiefImage);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
         final TextView txtRatingMessage = (TextView) v.findViewById(R.id.rating_message);
 
