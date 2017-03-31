@@ -15,7 +15,7 @@
 
         <ImageView
             android:id="@+id/itemimage"
-            android:src="@android:color/darker_gray"
+            android:src="@drawable/blank_item"
             android:layout_width="0dp"
             android:layout_weight="0.25"
             android:scaleType="centerCrop"

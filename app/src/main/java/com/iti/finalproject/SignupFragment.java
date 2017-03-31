@@ -166,7 +166,7 @@ public class SignupFragment extends Fragment {
         boolean cancel = false;
         View focusView = null;
 
-        String name_value = name.getText().toString().trim();
+        final String name_value = name.getText().toString().trim();
         String email_value = email.getText().toString().trim();
         String pass_value = pass.getText().toString();
         final String phone_value = phone.getText().toString().trim();
@@ -219,8 +219,8 @@ public class SignupFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 user.updateProfile(new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(name.getText().toString()).build());
-                                DatabaseAdapter.getInstance().addUserInfo(user.getUid(), phone_value, Collections.singletonList(address_value));
+                                        .setDisplayName(name_value).build());
+                                DatabaseAdapter.getInstance().addUserInfo(user.getUid(), name_value, phone_value, Collections.singletonList(address_value));
                                 getActivity().finish();
                                 startActivity(new Intent(getContext(), HomeActivity.class));
 

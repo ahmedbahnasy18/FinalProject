@@ -60,11 +60,6 @@ public class ChiefAdapter extends RecyclerView.Adapter<ChiefAdapter.CustomViewHo
                     .placeholder(R.drawable.animation_loading)
                     .error(R.drawable.blank_chief)
                     .into(holder.chiefImage);
-        else
-            Picasso
-                    .with(activity)
-                    .load(R.drawable.blank_chief)
-                    .into(holder.chiefImage);
 
         LayerDrawable stars = (LayerDrawable) holder.ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);

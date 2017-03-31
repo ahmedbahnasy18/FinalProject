@@ -39,18 +39,11 @@ public class DatabaseAdapter {
         getDatabase().getReference("Orders").child(order.getId()).setValue(order);
     }
 
-    public void addUserInfo(String UID, String phone, List<String> addresses){
+    public void addUserInfo(String UID, String name, String phone, List<String> addresses){
         DatabaseReference user = getDatabase().getReference("Users").child(UID);
         user.child("Phone").setValue(phone);
         user.child("Addresses").setValue(addresses);
-    }
-
-    public void updateUserAddresses(String UID, List<String> addresses){
-        getDatabase().getReference("Users").child(UID).child("Addresses").setValue(addresses);
-    }
-
-    public void addChiefInfo(Chief chief){
-        getDatabase().getReference("Chiefs").child(chief.getId()).setValue(chief);
+        user.child("Name").setValue(name);
     }
 
     public void addChiefRating(final String ChiefID, String OrderID, final float Rating){

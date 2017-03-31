@@ -167,7 +167,7 @@ public class Basket_fragment extends Fragment {
         TextView txtTotal = (TextView) v.findViewById(R.id.total_text);
         TextView txtQuantity = (TextView) v.findViewById(R.id.quantity_text);
         txtItems.setText(mItems.get(0).getName());
-        txtPrice.setText(String.format(Locale.getDefault(), "%s LE", String.valueOf(mItems.get(0).getPrice())));
+        txtPrice.setText(String.format(Locale.getDefault(), "%.2f LE", mItems.get(0).getPrice()));
         txtQuantity.setText("");
         float Total = mItems.get(0).getPrice();;
         int count = 1;

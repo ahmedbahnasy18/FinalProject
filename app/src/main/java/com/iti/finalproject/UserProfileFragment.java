@@ -119,7 +119,7 @@ public class UserProfileFragment extends Fragment {
 
                 mUser.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(txtName.getText().toString()).build());
 
-                DatabaseAdapter.getInstance().addUserInfo(mUser.getUid(), txtPhone.getText().toString(), addresses);
+                DatabaseAdapter.getInstance().addUserInfo(mUser.getUid(), txtName.getText().toString(), txtPhone.getText().toString(), addresses);
 
                 Toast.makeText(getActivity(), "Saved...", Toast.LENGTH_SHORT).show();
 

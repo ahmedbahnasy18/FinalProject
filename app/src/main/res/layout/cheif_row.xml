@@ -10,11 +10,11 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_margin="12dp">
+        android:layout_margin="10dp">
 
         <ImageView
             android:id="@+id/img_chief"
-            android:src="@android:color/darker_gray"
+            android:src="@drawable/blank_chief"
             android:layout_width="80dp"
             android:scaleType="centerCrop"
             android:layout_marginEnd="15dp"
@@ -26,9 +26,12 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_toEndOf="@+id/img_chief"
+            android:layout_toStartOf="@+id/rating_bar"
+            android:layout_above="@+id/deliverin"
+            android:layout_alignParentTop="true"
             android:layout_marginBottom="15dp"
             android:id="@+id/cheifname"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView

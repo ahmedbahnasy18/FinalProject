@@ -78,10 +78,6 @@ public class ChiefInfoFragment extends Fragment {
                     .placeholder(R.drawable.animation_loading)
                     .error(R.drawable.blank_chief)
                     .into(cheifImage);
-        else
-            Picasso.with(getActivity())
-                    .load(R.drawable.blank_chief)
-                    .into(cheifImage);
         ratingBar.setRating(mChief.getRating());
         openingHours.setText(mChief.getOpenHours());
         if(mChief.isPickUp()){
