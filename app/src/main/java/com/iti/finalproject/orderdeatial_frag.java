@@ -5,6 +5,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -78,14 +79,25 @@ public class orderdeatial_frag extends Fragment {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        txtChiefName.setText(dataSnapshot.child("name").getValue(String.class));
-                        ratingBar.setRating(dataSnapshot.child("rating").getValue(Float.class));
-                        Picasso.with(getActivity())
-                                .load(dataSnapshot.child("image").getValue(String.class))
-                                .resize(200,200)
-                                .placeholder(R.drawable.animation_loading)
-                                .error(R.drawable.blank_chief)
-                                .into(imgChiefImage);
+                        if (dataSnapshot.child("name").getValue(String.class) != null)
+                            txtChiefName.setText(dataSnapshot.child("name").getValue(String.class));
+                        if (dataSnapshot.child("rating").getValue(Float.class) != null)
+                            ratingBar.setRating(dataSnapshot.child("rating").getValue(Float.class));
+
+                        String imageURL = dataSnapshot.child("image").getValue(String.class);
+                        if(imageURL != null && !TextUtils.isEmpty(imageURL))
+                            Picasso
+                                    .with(getActivity())
+                                    .load(imageURL)
+                                    .resize(200,200)
+                                    .placeholder(R.drawable.animation_loading)
+                                    .error(R.drawable.blank_chief)
+                                    .into(imgChiefImage);
+                        else
+                            Picasso
+                                    .with(getActivity())
+                                    .load(R.drawable.blank_chief)
+                                    .into(imgChiefImage);
                     }
 
                     @Override
@@ -113,13 +125,6 @@ public class orderdeatial_frag extends Fragment {
 
         List<Item> results = myorder.getItems();
 
-        Collections.sort(results, new Comparator<Item>() {
-            @Override
-            public int compare(Item item1, Item item2)
-            {
-                return  item1.getName().compareTo(item2.getName());
-            }
-        });
 
         v.findViewById(R.id.btn_submit_rating).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +140,13 @@ public class orderdeatial_frag extends Fragment {
             }
         });
 
+        Collections.sort(results, new Comparator<Item>() {
+            @Override
+            public int compare(Item item1, Item item2)
+            {
+                return  item1.getName().compareTo(item2.getName());
+            }
+        });
         TextView txtOrderNumber = (TextView) v.findViewById(R.id.txt_order_number);
         TextView txtItems = (TextView) v.findViewById(R.id.itemname_text);
         TextView txtPrice = (TextView) v.findViewById(R.id.price_text);

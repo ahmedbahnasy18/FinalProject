@@ -3,11 +3,10 @@ package com.iti.finalproject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.PorterDuff;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.text.InputType;
@@ -37,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class UserProfileFragment extends Fragment {
 
@@ -202,18 +202,23 @@ public class UserProfileFragment extends Fragment {
 
     private void addNewAddress(String address) {
         if (mAddressEditTexts.size() < MAX_ADDRESSES) {
-            final LinearLayout linearLayout = new LinearLayout(getActivity());
+            final LinearLayout linearLayout = new LinearLayout(getApplicationContext());
 
-            final EditText txtAddress = new EditText(getActivity());
+            final EditText txtAddress = new EditText(getApplicationContext());
             txtAddress.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.85f));
             txtAddress.setMaxLines(1);
+            txtAddress.setTextColor(Color.BLACK);
             txtAddress.setInputType(InputType.TYPE_NULL);
             txtAddress.setText(address);
 
-            Button button = new Button(new ContextThemeWrapper(getActivity(), R.style.Button));
+            Button button = new Button(new ContextThemeWrapper(getApplicationContext(), R.style.Button));
             button.setText("-");
-            button.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorAccent), PorterDuff.Mode.SRC);
-            button.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.15f));
+            button.setTextColor(Color.WHITE);
+            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.15f);
+            buttonParams.bottomMargin = 5;
+            //noinspection ResourceType
+            button.setPadding(0,0,0,-20);
+            button.setLayoutParams(buttonParams);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

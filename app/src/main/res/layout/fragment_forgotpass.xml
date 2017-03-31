@@ -1,8 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".LoginFragment"
     android:id="@+id/fragment_log">
@@ -19,17 +20,16 @@
         android:layout_height="match_parent"
         android:background="#90000000"/>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ForgotpassFragment">
+    <LinearLayout
+        android:layout_margin="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ForgotpassFragment">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/email_text_input_layout"
             android:textColorHint="@android:color/white"
-            android:layout_margin="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -45,7 +45,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#ffd9d9d9"
             android:layout_gravity="center_horizontal"
@@ -54,7 +54,7 @@
 
             <Button
                 android:id="@+id/reset_pass"
-                android:layout_width="190dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorAccent"

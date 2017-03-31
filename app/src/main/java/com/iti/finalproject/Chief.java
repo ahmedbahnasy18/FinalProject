@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public class Chief implements Parcelable {
-	
+
     private String id;
     private String name;
     private int rating;
@@ -22,6 +22,7 @@ public class Chief implements Parcelable {
     private boolean delivery;
     private String deliverIn;
     private String phone;
+    private String address;
     private List<Item> menuItems;
 
     public int getRatingCount() {
@@ -41,7 +42,7 @@ public class Chief implements Parcelable {
     }
 
     public Chief(){
-		this.id = "";
+        this.id = "";
         this.name = "";
         this.rating = 0;
         this.image = "";
@@ -51,7 +52,15 @@ public class Chief implements Parcelable {
         this.delivery = false;
         this.deliverIn = "";
         this.menuItems = new ArrayList<>();
-	}
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public Chief(String id, String name, int rating, String image, String phone, String openHours, boolean pickUp, boolean delivery, String deliverIn, ArrayList<Item> menu) {
         this.id = id;
@@ -148,11 +157,14 @@ public class Chief implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.name);
         dest.writeInt(this.rating);
+        dest.writeInt(this.ratingCount);
         dest.writeString(this.image);
         dest.writeString(this.openHours);
         dest.writeByte(this.pickUp ? (byte) 1 : (byte) 0);
         dest.writeByte(this.delivery ? (byte) 1 : (byte) 0);
         dest.writeString(this.deliverIn);
+        dest.writeString(this.phone);
+        dest.writeString(this.address);
         dest.writeTypedList(this.menuItems);
     }
 
@@ -160,11 +172,14 @@ public class Chief implements Parcelable {
         this.id = in.readString();
         this.name = in.readString();
         this.rating = in.readInt();
+        this.ratingCount = in.readInt();
         this.image = in.readString();
         this.openHours = in.readString();
         this.pickUp = in.readByte() != 0;
         this.delivery = in.readByte() != 0;
         this.deliverIn = in.readString();
+        this.phone = in.readString();
+        this.address = in.readString();
         this.menuItems = in.createTypedArrayList(Item.CREATOR);
     }
 

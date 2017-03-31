@@ -3,7 +3,7 @@
     package="com.iti.finalproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -12,28 +12,36 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".BasketDialogActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/Theme.AppCompat.Light.Dialog">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDiihTkjs8H4RlEdJh72AtdR5IFRvIKHt4" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c5059be9567393b4738ce87bf92793ff4e2763e0" />

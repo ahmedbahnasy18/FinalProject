@@ -34,13 +34,6 @@ public class ChiefInfoFragment extends Fragment {
     public ChiefInfoFragment() {
     }
 
-    public static ChiefInfoFragment newInstance(String param1, String param2) {
-        ChiefInfoFragment fragment = new ChiefInfoFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public static ChiefInfoFragment objInstance(Chief cheif ) {
         ChiefInfoFragment fragment = new ChiefInfoFragment();
         Bundle args = new Bundle();
@@ -61,7 +54,6 @@ public class ChiefInfoFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-
     }
 
     @Override
