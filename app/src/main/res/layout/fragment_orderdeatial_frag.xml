@@ -122,7 +122,7 @@
                 android:textSize="18sp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Total"/>
+                android:text="@string/total"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -148,7 +148,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:text="Rating :" />
+            android:text="@string/rating_colon" />
 
         <LinearLayout
             android:id="@+id/rating_layout"
@@ -165,7 +165,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:text="Food Quality"
+                    android:text="@string/food_quality"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -204,7 +204,7 @@
                     android:textSize="17sp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
-                    android:text="Delivery Time"/>
+                    android:text="@string/delivery_time"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -232,7 +232,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:text="Order Price"
+                    android:text="@string/order_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -266,7 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
                 <TextView
-                    android:text="Overall Exp."
+                    android:text="@string/overall_exp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -298,7 +298,7 @@
             <Button
                 android:id="@+id/btn_submit_rating"
                 android:layout_width="wrap_content"
-                android:text="Submit Rating"
+                android:text="@string/submit_rating"
                 android:layout_height="55dp"
                 style="@style/Button"
                 android:layout_gravity="end"/>

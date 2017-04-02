@@ -30,7 +30,7 @@
         android:background="@android:color/darker_gray"/>
 
     <TextView
-        android:text="Price"
+        android:text="@string/price"
         android:id="@+id/lbl_price"
         android:textStyle="bold"
         android:layout_alignParentStart="true"
@@ -40,7 +40,7 @@
         android:layout_marginBottom="10dp"
         android:textSize="17sp"/>
     <TextView
-        android:text="SubTotal"
+        android:text="@string/subtotal"
         android:id="@+id/lbl_subtotal"
         android:textStyle="bold"
         android:layout_alignParentEnd="true"
@@ -78,7 +78,7 @@
         android:background="@android:color/darker_gray"/>
 
     <TextView
-        android:text="Quantity"
+        android:text="@string/quantity"
         android:id="@+id/lbl_quantity"
         android:textStyle="bold"
         android:layout_below="@+id/price_separator"
@@ -138,7 +138,7 @@
         android:layout_below="@+id/quantity_separator">
 
         <Button
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_marginStart="-5dp"
@@ -147,7 +147,7 @@
             android:id="@+id/cancel_btn"/>
 
         <Button
-            android:text="Add"
+            android:text="@string/add"
             android:layout_width="0dp"
             android:layout_marginEnd="-5dp"
             android:layout_weight="0.5"

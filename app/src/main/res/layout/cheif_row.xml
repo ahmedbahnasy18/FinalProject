@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/lbl_delivers_in"
-            android:text="Delivers in "
+            android:text="@string/delivers_in"
             android:layout_toEndOf="@+id/img_chief"
             android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"

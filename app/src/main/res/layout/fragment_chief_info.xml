@@ -70,7 +70,7 @@
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
             <TextView
-                android:text="Opening Hours :"
+                android:text="@string/opening_hours_colon"
                 android:layout_marginTop="25dp"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4" />
             <TextView
-                android:text="Pick Up :"
+                android:text="@string/pick_up_colon"
                 android:layout_marginTop="45dp"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView6" />
             <TextView
-                android:text="Delivery :"
+                android:text="@string/delivery_colon"
                 android:layout_marginTop="45dp"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView8" />
             <TextView
-                android:text="Delivers in :"
+                android:text="@string/delivers_in_colon"
                 android:layout_marginTop="45dp"
                 android:textStyle="bold"
                 android:textSize="18sp"

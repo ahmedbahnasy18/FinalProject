@@ -5,4 +5,37 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="facebook_app_id">195911950898375</string>
+    <string name="price">Price</string>
+    <string name="subtotal">SubTotal</string>
+    <string name="quantity">Quantity</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="delivers_in">Delivers in</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="total">Total</string>
+    <string name="check_out">Check Out</string>
+    <string name="opening_hours_colon">Opening Hours :</string>
+    <string name="pick_up_colon">Pick Up :</string>
+    <string name="delivery_colon">Delivery :</string>
+    <string name="delivers_in_colon">Delivers in :</string>
+    <string name="email">Email</string>
+    <string name="reset">Reset</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="facebook">Facebook</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_up">Sign Up?</string>
+    <string name="rating_colon">Rating :</string>
+    <string name="food_quality">Food Quality</string>
+    <string name="delivery_time">Delivery Time</string>
+    <string name="order_price">Order Price</string>
+    <string name="overall_exp">Overall Exp.</string>
+    <string name="submit_rating">Submit Rating</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="addresses_colon">Addresses:</string>
+    <string name="add_address">Add Address</string>
+    <string name="price_colon">Price :</string>
 </resources>

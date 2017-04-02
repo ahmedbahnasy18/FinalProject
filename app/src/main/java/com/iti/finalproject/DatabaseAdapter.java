@@ -52,8 +52,17 @@ public class DatabaseAdapter {
         getDatabase().getReference("Chiefs").child(ChiefID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                float previousRating = dataSnapshot.child("rating").getValue(Float.class);
-                float ratingCount = dataSnapshot.child("ratingCount").getValue(Integer.class);
+
+                float previousRating = 0;
+                float ratingCount = 0;
+
+                if (dataSnapshot.child("rating").getValue(Float.class) != null){
+                    previousRating = dataSnapshot.child("rating").getValue(Float.class);
+                }
+
+                if (dataSnapshot.child("ratingCount").getValue(Integer.class) != null){
+                    ratingCount = dataSnapshot.child("ratingCount").getValue(Integer.class);
+                }
 
                 float currentRating = ((ratingCount * previousRating) + Rating) / (ratingCount + 1);
 
